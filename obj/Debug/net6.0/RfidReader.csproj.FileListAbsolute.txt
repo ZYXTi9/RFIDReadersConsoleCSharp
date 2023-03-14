@@ -1,0 +1,489 @@
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\RfidReader.exe
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\RfidReader.deps.json
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\RfidReader.runtimeconfig.json
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\Google.Protobuf.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\MySql.Data.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\ZstdNet.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\Impinj.OctaneSdk.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\LLRP.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\LLRP.Impinj.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\Symbol.RFID3.Host.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\Impinj.OctaneSdk.pdb
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\Impinj.OctaneSdk.xml
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\LLRP.pdb
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\bin\Debug\net6.0\LLRP.Impinj.pdb
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.csproj.AssemblyReference.cache
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.AssemblyInfoInputs.cache
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.AssemblyInfo.cs
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.csproj.CoreCompileInputs.cache
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.csproj.CopyComplete
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\obj\Debug\net6.0\refint\RfidReader.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.genruntimeconfig.cache
+D:\OneDrive\Desktop\RfidReader\RfidReader\RfidReader\obj\Debug\net6.0\ref\RfidReader.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\RfidReader.exe
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\RfidReader.deps.json
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\RfidReader.runtimeconfig.json
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Google.Protobuf.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\MySql.Data.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\ZstdNet.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Impinj.OctaneSdk.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\LLRP.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\LLRP.Impinj.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Symbol.RFID3.Host.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Impinj.OctaneSdk.pdb
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Impinj.OctaneSdk.xml
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\LLRP.pdb
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\LLRP.Impinj.pdb
+D:\OneDrive\Desktop\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.csproj.AssemblyReference.cache
+D:\OneDrive\Desktop\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive\Desktop\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.AssemblyInfoInputs.cache
+D:\OneDrive\Desktop\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.AssemblyInfo.cs
+D:\OneDrive\Desktop\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.csproj.CoreCompileInputs.cache
+D:\OneDrive\Desktop\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.csproj.CopyComplete
+D:\OneDrive\Desktop\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\obj\Debug\net6.0\refint\RfidReader.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\RfidReader\RfidReader\obj\Debug\net6.0\RfidReader.genruntimeconfig.cache
+D:\OneDrive\Desktop\RfidReader\RfidReader\obj\Debug\net6.0\ref\RfidReader.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\appsettings.json
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\System.Text.Json.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\RfidReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\RfidReader.exe
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\appsettings.json
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\RfidReader.deps.json
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\RfidReader.runtimeconfig.json
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Google.Protobuf.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\MySql.Data.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\ZstdNet.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\System.Text.Json.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Impinj.OctaneSdk.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\LLRP.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\LLRP.Impinj.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Symbol.RFID3.Host.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Impinj.OctaneSdk.pdb
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\Impinj.OctaneSdk.xml
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\LLRP.pdb
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\bin\Debug\net6.0\LLRP.Impinj.pdb
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\obj\Debug\net6.0\RfidReader.csproj.AssemblyReference.cache
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\obj\Debug\net6.0\RfidReader.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\obj\Debug\net6.0\RfidReader.AssemblyInfoInputs.cache
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\obj\Debug\net6.0\RfidReader.AssemblyInfo.cs
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\obj\Debug\net6.0\RfidReader.csproj.CoreCompileInputs.cache
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\obj\Debug\net6.0\RfidReader.csproj.CopyComplete
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\obj\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\obj\Debug\net6.0\refint\RfidReader.dll
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\obj\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\obj\Debug\net6.0\RfidReader.genruntimeconfig.cache
+D:\OneDrive\Desktop\ConsoleAppRFIDReader\RfidReader\obj\Debug\net6.0\ref\RfidReader.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.exe
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\appsettings.json
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.deps.json
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.runtimeconfig.json
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Google.Protobuf.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\MySql.Data.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\ZstdNet.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Text.Json.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Impinj.OctaneSdk.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.Impinj.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Symbol.RFID3.Host.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Impinj.OctaneSdk.pdb
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Impinj.OctaneSdk.xml
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.pdb
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.Impinj.pdb
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.csproj.AssemblyReference.cache
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.AssemblyInfoInputs.cache
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.AssemblyInfo.cs
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.csproj.CoreCompileInputs.cache
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.csproj.CopyComplete
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\obj\Debug\net6.0\refint\RfidReader.dll
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.genruntimeconfig.cache
+D:\OneDrive\Desktop\Backup 02172023\RFIDReaderNewVersion-main\obj\Debug\net6.0\ref\RfidReader.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.exe
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\appsettings.json
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.deps.json
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.runtimeconfig.json
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Google.Protobuf.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\MySql.Data.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\ZstdNet.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Text.Json.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Impinj.OctaneSdk.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.Impinj.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Symbol.RFID3.Host.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Impinj.OctaneSdk.pdb
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Impinj.OctaneSdk.xml
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.pdb
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.Impinj.pdb
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.csproj.AssemblyReference.cache
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.AssemblyInfoInputs.cache
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.AssemblyInfo.cs
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.csproj.CoreCompileInputs.cache
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.csproj.CopyComplete
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\obj\Debug\net6.0\refint\RfidReader.dll
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.genruntimeconfig.cache
+D:\OneDrive\Desktop\Backup 02212023\RFIDReaderNewVersion-main\obj\Debug\net6.0\ref\RfidReader.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.csproj.AssemblyReference.cache
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.AssemblyInfoInputs.cache
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.AssemblyInfo.cs
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.csproj.CoreCompileInputs.cache
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\obj\Debug\net6.0\refint\RfidReader.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.exe
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\appsettings.json
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.deps.json
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.runtimeconfig.json
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Google.Protobuf.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\MySql.Data.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\ZstdNet.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Text.Json.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Impinj.OctaneSdk.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.Impinj.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Symbol.RFID3.Host.dll
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Impinj.OctaneSdk.pdb
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Impinj.OctaneSdk.xml
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.pdb
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.Impinj.pdb
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.csproj.CopyComplete
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.genruntimeconfig.cache
+D:\OneDrive\Desktop\Backup 0222023\RFIDReaderNewVersion-main\obj\Debug\net6.0\ref\RfidReader.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.exe
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Google.Protobuf.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\MySql.Data.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\ZstdNet.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Text.Json.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Impinj.OctaneSdk.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.Impinj.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Symbol.RFID3.Host.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Impinj.OctaneSdk.pdb
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\Impinj.OctaneSdk.xml
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.pdb
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\LLRP.Impinj.pdb
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.csproj.AssemblyReference.cache
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.AssemblyInfoInputs.cache
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.AssemblyInfo.cs
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.csproj.CoreCompileInputs.cache
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.csproj.CopyComplete
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\obj\Debug\net6.0\refint\RfidReader.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\appsettings.json
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.deps.json
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.runtimeconfig.json
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\bin\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\obj\Debug\net6.0\RfidReader.genruntimeconfig.cache
+D:\OneDrive\Desktop\Backup 02232023\RFIDReaderNewVersion-main\obj\Debug\net6.0\ref\RfidReader.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\RfidReader.exe
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\appsettings.json
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\RfidReader.deps.json
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\RfidReader.runtimeconfig.json
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Google.Protobuf.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\MySql.Data.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\ZstdNet.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Text.Json.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Impinj.OctaneSdk.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\LLRP.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\LLRP.Impinj.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Symbol.RFID3.Host.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.csproj.AssemblyReference.cache
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.AssemblyInfoInputs.cache
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.AssemblyInfo.cs
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.csproj.CoreCompileInputs.cache
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.csproj.CopyComplete
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\refint\RfidReader.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.genruntimeconfig.cache
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\ref\RfidReader.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Renci.SshNet.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\SshNet.Security.Cryptography.dll
+D:\OneDrive\Desktop\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Xml.XPath.XmlDocument.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\RfidReader.exe
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\appsettings.json
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\RfidReader.deps.json
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\RfidReader.runtimeconfig.json
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Google.Protobuf.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\LLRP.Impinj.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\LLRP.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\MySql.Data.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\ZstdNet.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Impinj.OctaneSdk.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Renci.SshNet.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\SshNet.Security.Cryptography.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Text.Json.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\System.Xml.XPath.XmlDocument.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\bin\Debug\net6.0\Symbol.RFID3.Host.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.csproj.AssemblyReference.cache
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.AssemblyInfoInputs.cache
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.AssemblyInfo.cs
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.csproj.CoreCompileInputs.cache
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.csproj.CopyComplete
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\refint\RfidReader.dll
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.pdb
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\RfidReader.genruntimeconfig.cache
+D:\OneDrive\Desktop\old\RFIDReaderConsoleLatest03102023\RFIDReaderConsole-main\RFIDReaderConsole-main\obj\Debug\net6.0\ref\RfidReader.dll
