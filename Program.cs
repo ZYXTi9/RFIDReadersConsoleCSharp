@@ -22,11 +22,6 @@ namespace RfidReader
 
             Program p = new();
             p.MainMenu();
-
-            SetConsoleCtrlHandler(new ConsoleCtrlDelegate(Console_CloseHandler), true);
-
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
         }
         public void MainMenu()
         {
@@ -96,6 +91,7 @@ namespace RfidReader
 
                                 while (dataReader2.Read())
                                 {
+                                    zebra.ReadTag();
                                     impinj.ReadTag();
                                 }
                             }

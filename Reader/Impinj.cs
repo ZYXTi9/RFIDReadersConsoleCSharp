@@ -67,8 +67,8 @@ namespace RfidReader.Reader
                             ConnectToNew();
                             break;
                         case 4:
-                            //p.MainMenu();
-                            ReadTag();
+                            p.MainMenu();
+                            //ReadTag();
                             break;
                         default:
                             Console.WriteLine("Enter a valid Integer in the range 1-4");

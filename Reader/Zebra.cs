@@ -10,7 +10,7 @@ namespace RfidReader.Reader
 {
     class Zebra
     {
-        static Program p = new();
+        static Program p = new Program();
 
         MySqlCommand? cmd;
         public int ReaderTypeID { get; set; }
@@ -35,10 +35,10 @@ namespace RfidReader.Reader
         private BackgroundWorker bgWorker;
 
         private delegate void updateRead(Events.ReadEventData eventData);
-        private updateRead updateReadHandler;
+        private updateRead updateReadHandler = null;
 
-        public Hashtable uniqueTags = new();
-        public int totalTags;
+        public static Hashtable uniqueTags = new();
+        public static int totalTags;
         public Zebra()
         {
             tagStorageSettings = new();
@@ -83,8 +83,8 @@ namespace RfidReader.Reader
                             ConnectToNew();
                             break;
                         case 4:
-                            //p.Main();
-                            ReadTag();
+                            p.MainMenu();
+                            //ReadTag();
                             break;
                         default:
                             Console.WriteLine("Enter a valid Integer in the range 1-4");
@@ -2278,12 +2278,15 @@ namespace RfidReader.Reader
                 Console.WriteLine(ex.Message);
             }
         }
+        private void x(RFIDReader reader, TagData tag)
+        {
+
+        }
         private void MyUpdateRead(Events.ReadEventData eventData)
         {
             DataTable dt = new();
 
             dt.Columns.Add("EPC");
-            dt.Columns.Add("Antenna");
 
             foreach (RFIDReader reader in p.zebraReaders)
             {
@@ -2305,14 +2308,13 @@ namespace RfidReader.Reader
                             }
                         }
 
-                        dt.Rows.Add(epc, tag.AntennaID);
+                        dt.Rows.Add(epc);
 
                         totalTags += tag.TagSeenCount;
 
                         if (!isFound)
                         {
                             Console.WriteLine($"{epc} {tag.AntennaID}");
-                            uniqueTags.Add(epc, dt.Rows);
 
                             MySqlDatabase db1 = new();
                             string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @Antenna";
@@ -2332,7 +2334,6 @@ namespace RfidReader.Reader
                             }
                             db1.Con.Close();
 
-
                             MySqlDatabase db2 = new();
                             string selQuery2 = @"SpRead";
                             cmd = new MySqlCommand(selQuery2, db2.Con);
@@ -2346,6 +2347,8 @@ namespace RfidReader.Reader
                             }
                             cmd.ExecuteScalar();
                             db2.Con.Close();
+
+                            uniqueTags.Add(epc, dt.Rows);
                         }
                     }
                 }
