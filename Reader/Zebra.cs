@@ -70,6 +70,7 @@ namespace RfidReader.Reader
                 try
                 {
                     option = Convert.ToInt32(Console.ReadLine());
+
                     switch (option)
                     {
                         case 1:
@@ -199,7 +200,7 @@ namespace RfidReader.Reader
                 Console.WriteLine(ex.Message);
             }
         }
-        public bool Connected(RFIDReader? reader = null)
+        private bool Connected(RFIDReader? reader = null)
         {
             try
             {
@@ -236,7 +237,6 @@ namespace RfidReader.Reader
                     {
                         ReaderID = Convert.ToInt32(getReaderID);
                     }
-
                     db3.Con.Close();
 
                     MySqlDatabase db4 = new();
@@ -305,7 +305,9 @@ namespace RfidReader.Reader
 
                     cmd.ExecuteNonQuery();
                 }
+
                 Console.WriteLine("\nReader Has Successfully Added");
+
             }
             catch (Exception ex)
             {
@@ -326,6 +328,7 @@ namespace RfidReader.Reader
                     if (dataReader.HasRows)
                     {
                         Console.WriteLine("Connected Readers\n");
+
                         while (dataReader.Read())
                         {
                             int readerID = dataReader.GetInt32("ReaderID");
@@ -337,6 +340,7 @@ namespace RfidReader.Reader
                             Console.WriteLine("IP Address                  : {0} ", ip);
                             Console.WriteLine("Reader Name                 : {0} \n", readerName);
                         }
+
                         db.Con.Close();
 
                         Console.Write("Enter Reader ID : ");
@@ -399,7 +403,7 @@ namespace RfidReader.Reader
                 Console.WriteLine(ex.Message);
             }
         }
-        public void AdjustSettings(RFIDReader reader)
+        private void AdjustSettings(RFIDReader reader)
         {
             bool isWorking = true;
             int option;
@@ -422,7 +426,9 @@ namespace RfidReader.Reader
 
                     try
                     {
+
                         option = Convert.ToInt32(Console.ReadLine());
+
                         switch (option)
                         {
                             case 1:
@@ -460,7 +466,7 @@ namespace RfidReader.Reader
                 }
             }
         }
-        public void ReaderInfo(RFIDReader reader)
+        private void ReaderInfo(RFIDReader reader)
         {
             Console.WriteLine("\nReader Capabilities");
             Console.WriteLine("---------------");
@@ -560,7 +566,7 @@ namespace RfidReader.Reader
                 Console.WriteLine(e.Message);
             }
         }
-        public void ReaderSettings(RFIDReader reader)
+        private void ReaderSettings(RFIDReader reader)
         {
             bool isWorking = true;
             int option;
@@ -577,7 +583,9 @@ namespace RfidReader.Reader
 
                 try
                 {
+
                     option = Convert.ToInt32(Console.ReadLine());
+
                     switch (option)
                     {
                         case 1:
@@ -610,7 +618,7 @@ namespace RfidReader.Reader
                 }
             }
         }
-        public void ConfigureRFModes(RFIDReader reader)
+        private void ConfigureRFModes(RFIDReader reader)
         {
             int option, antenna;
             bool isWorking = true;
@@ -635,6 +643,7 @@ namespace RfidReader.Reader
 
                 try
                 {
+
                     option = Convert.ToInt32(Console.ReadLine());
 
                     switch (option)
@@ -791,7 +800,7 @@ namespace RfidReader.Reader
                 Console.WriteLine(e.Message);
             }
         }
-        public void TagSettings(RFIDReader reader)
+        private void TagSettings(RFIDReader reader)
         {
             bool isWorking = true;
             int option;
@@ -803,9 +812,12 @@ namespace RfidReader.Reader
                 Console.WriteLine("2. Get Tag Storage");
                 Console.WriteLine("3. Go back\n");
                 Console.Write("[1-3] : ");
+
                 try
                 {
+
                     option = Convert.ToInt32(Console.ReadLine());
+
                     switch (option)
                     {
                         case 1:
@@ -945,7 +957,7 @@ namespace RfidReader.Reader
                 Console.WriteLine(e.Message);
             }
         }
-        public void AntennaSettings(RFIDReader reader)
+        private void AntennaSettings(RFIDReader reader)
         {
             int option;
             bool isWorking = true;
@@ -960,7 +972,9 @@ namespace RfidReader.Reader
 
                 try
                 {
+
                     option = Convert.ToInt32(Console.ReadLine());
+
                     switch (option)
                     {
                         case 1:
@@ -991,7 +1005,7 @@ namespace RfidReader.Reader
                 }
             }
         }
-        public void ConfigurePower(RFIDReader reader)
+        private void ConfigurePower(RFIDReader reader)
         {
             bool isWorking = true;
             int option, antenna;
@@ -1009,7 +1023,9 @@ namespace RfidReader.Reader
 
                 try
                 {
+
                     option = Convert.ToInt32(Console.ReadLine());
+
                     switch (option)
                     {
                         case 1:
@@ -1119,7 +1135,7 @@ namespace RfidReader.Reader
                 Console.WriteLine(e.Message);
             }
         }
-        public void EnableDisableAntenna(RFIDReader reader)
+        private void EnableDisableAntenna(RFIDReader reader)
         {
             bool isWorking = true;
             int antenna, option, antennaStatus;
@@ -1137,7 +1153,9 @@ namespace RfidReader.Reader
 
                 try
                 {
+
                     option = Convert.ToInt32(Console.ReadLine());
+
                     switch (option)
                     {
                         case 1:
@@ -1396,7 +1414,7 @@ namespace RfidReader.Reader
                 db.Con.Close();
             }
         }
-        public void SetEnableAllAntennaInfo(RFIDReader reader)
+        private void SetEnableAllAntennaInfo(RFIDReader reader)
         {
             try
             {
@@ -1480,7 +1498,7 @@ namespace RfidReader.Reader
                 Console.WriteLine(e.Message);
             }
         }
-        public void GPIOConfig(RFIDReader reader)
+        private void GPIOConfig(RFIDReader reader)
         {
             bool isWorking = true;
             int option;
@@ -1495,6 +1513,7 @@ namespace RfidReader.Reader
 
                 try
                 {
+
                     option = Convert.ToInt32(Console.ReadLine());
 
                     switch (option)
@@ -1543,7 +1562,9 @@ namespace RfidReader.Reader
 
                 try
                 {
+
                     option = Convert.ToInt32(Console.ReadLine());
+
                     switch (option)
                     {
                         case 1:
@@ -1701,7 +1722,7 @@ namespace RfidReader.Reader
                 Console.WriteLine("Exception : {0}", e.Message);
             }
         }
-        public void ConfigureGPO(RFIDReader reader)
+        private void ConfigureGPO(RFIDReader reader)
         {
             bool isWorking = true;
             int option, gpoPort, gpoStatus;
@@ -1717,6 +1738,7 @@ namespace RfidReader.Reader
 
                 try
                 {
+
                     option = Convert.ToInt32(Console.ReadLine());
 
                     switch (option)
@@ -1877,7 +1899,7 @@ namespace RfidReader.Reader
                 Console.WriteLine("Exception : {0}", e.Message);
             }
         }
-        public void SingulationControl(RFIDReader reader)
+        private void SingulationControl(RFIDReader reader)
         {
             bool isWorking = true;
             int option, antenna, invState = 0, slFlag = 0;
@@ -1895,7 +1917,9 @@ namespace RfidReader.Reader
 
                 try
                 {
+
                     option = Convert.ToInt32(Console.ReadLine());
+
                     switch (option)
                     {
                         case 1:
@@ -2095,7 +2119,7 @@ namespace RfidReader.Reader
                 Console.WriteLine(e.Message);
             }
         }
-        public void PowerRadio(RFIDReader reader)
+        private void PowerRadio(RFIDReader reader)
         {
             string? radioState = "";
             bool isWorking = true;
@@ -2224,13 +2248,13 @@ namespace RfidReader.Reader
                 foreach (RFIDReader reader in p.zebraReaders)
                 {
                     reader.Actions.Inventory.Stop();
+                    Console.WriteLine("\nZebra Total Tags: " + uniqueTags.Count + "(" + totalTags + ")");
 
                     MySqlDatabase db1 = new();
                     string updQuery = "UPDATE read_tbl SET TimeOut = TIME_FORMAT(NOW(), '%h:%i:%s %p'), LogActive = 'No' WHERE LogActive = 'Yes'";
                     cmd = new MySqlCommand(updQuery, db1.Con);
                     cmd.Parameters.Clear();
                     cmd.ExecuteNonQuery();
-                    Console.WriteLine("\nZebra Total Tags: " + uniqueTags.Count + "(" + totalTags + ")");
                 }
             }
             catch (IOException)
@@ -2257,6 +2281,7 @@ namespace RfidReader.Reader
         private void MyUpdateRead(Events.ReadEventData eventData)
         {
             DataTable dt = new();
+
             dt.Columns.Add("EPC");
             dt.Columns.Add("Antenna");
 
@@ -2282,52 +2307,46 @@ namespace RfidReader.Reader
 
                         dt.Rows.Add(epc, tag.AntennaID);
 
-                        if (isFound)
+                        totalTags += tag.TagSeenCount;
+
+                        if (!isFound)
                         {
-                            totalTags += tag.TagSeenCount;
-                        }
-                        else
-                        {
-                            totalTags += tag.TagSeenCount;
                             Console.WriteLine($"{epc} {tag.AntennaID}");
-                        }
-                        lock (uniqueTags.SyncRoot)
-                        {
                             uniqueTags.Add(epc, dt.Rows);
+
+                            MySqlDatabase db1 = new();
+                            string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @Antenna";
+
+                            cmd = new MySqlCommand(selQuery1, db1.Con);
+                            cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                            cmd.Parameters.AddWithValue("@Antenna", tag.AntennaID);
+
+                            if (db1.Con.State != ConnectionState.Open)
+                            {
+                                db1.Con.Open();
+                            }
+                            var res = cmd.ExecuteScalar();
+                            if (res != null)
+                            {
+                                AntennaID = Convert.ToInt32(res);
+                            }
+                            db1.Con.Close();
+
+
+                            MySqlDatabase db2 = new();
+                            string selQuery2 = @"SpRead";
+                            cmd = new MySqlCommand(selQuery2, db2.Con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@aID", AntennaID);
+                            cmd.Parameters.AddWithValue("@epcTag", epc);
+                            if (db2.Con.State != ConnectionState.Open)
+                            {
+                                db2.Con.Open();
+                            }
+                            cmd.ExecuteScalar();
+                            db2.Con.Close();
                         }
-
-                        MySqlDatabase db1 = new();
-                        string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @Antenna";
-
-                        cmd = new MySqlCommand(selQuery1, db1.Con);
-                        cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
-                        cmd.Parameters.AddWithValue("@Antenna", tag.AntennaID);
-
-                        if (db1.Con.State != ConnectionState.Open)
-                        {
-                            db1.Con.Open();
-                        }
-                        var res = cmd.ExecuteScalar();
-                        if (res != null)
-                        {
-                            AntennaID = Convert.ToInt32(res);
-                        }
-                        db1.Con.Close();
-
-
-                        MySqlDatabase db2 = new();
-                        string selQuery2 = @"SpRead";
-                        cmd = new MySqlCommand(selQuery2, db2.Con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@aID", AntennaID);
-                        cmd.Parameters.AddWithValue("@epcTag", epc);
-                        if (db2.Con.State != ConnectionState.Open)
-                        {
-                            db2.Con.Open();
-                        }
-                        cmd.ExecuteScalar();
-                        db2.Con.Close();
                     }
                 }
             }
@@ -2358,6 +2377,7 @@ namespace RfidReader.Reader
             }
             catch (Exception)
             {
+                Console.WriteLine("Error");
             }
         }
         private Symbol.RFID3.AntennaInfo GetAntennaInfo()
@@ -2366,13 +2386,13 @@ namespace RfidReader.Reader
         }
         private void Default(RFIDReader? reader)
         {
+            Antennas.RFMode rfMode;
+            Antennas.SingulationControl singularControl;
+            Antennas.Config antennaConfig;
+            ushort[] antID = reader.Config.Antennas.AvailableAntennas;
+
             try
             {
-                Antennas.RFMode rfMode;
-                Antennas.SingulationControl singularControl;
-                Antennas.Config antennaConfig;
-                ushort[] antID = reader.Config.Antennas.AvailableAntennas;
-
                 MySqlDatabase db1 = new();
 
                 string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID";

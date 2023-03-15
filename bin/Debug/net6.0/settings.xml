@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-16"?>
 <Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <AutoStart>
-    <Mode>None</Mode>
+    <Mode>Periodic</Mode>
     <GpiPortNumber>0</GpiPortNumber>
     <GpiLevel>false</GpiLevel>
     <FirstDelayInMs>0</FirstDelayInMs>
-    <PeriodInMs>0</PeriodInMs>
+    <PeriodInMs>1000</PeriodInMs>
     <UtcTimestamp>0</UtcTimestamp>
   </AutoStart>
   <AutoStop>
-    <Mode>None</Mode>
-    <DurationInMs>0</DurationInMs>
+    <Mode>Duration</Mode>
+    <DurationInMs>5000</DurationInMs>
     <GpiPortNumber>0</GpiPortNumber>
     <GpiLevel>false</GpiLevel>
     <Timeout>0</Timeout>
   </AutoStop>
-  <ReaderMode>DenseReaderM4</ReaderMode>
-  <SearchMode>ReaderSelected</SearchMode>
-  <Session>1</Session>
-  <TagPopulationEstimate>100</TagPopulationEstimate>
+  <ReaderMode>AutoSetDenseReader</ReaderMode>
+  <SearchMode>DualTarget</SearchMode>
+  <Session>2</Session>
+  <TagPopulationEstimate>32</TagPopulationEstimate>
   <LowDutyCycle>
     <IsEnabled>false</IsEnabled>
     <EmptyFieldTimeoutInMs>500</EmptyFieldTimeoutInMs>
@@ -60,10 +60,10 @@
       <IsEnabled>true</IsEnabled>
       <PortNumber>1</PortNumber>
       <PortName>Antenna Port 1</PortName>
-      <TxPowerInDbm>10</TxPowerInDbm>
-      <RxSensitivityInDbm>-70</RxSensitivityInDbm>
-      <MaxRxSensitivity>false</MaxRxSensitivity>
-      <MaxTxPower>false</MaxTxPower>
+      <TxPowerInDbm>0</TxPowerInDbm>
+      <RxSensitivityInDbm>0</RxSensitivityInDbm>
+      <MaxRxSensitivity>true</MaxRxSensitivity>
+      <MaxTxPower>true</MaxTxPower>
     </Antenna>
     <Antenna>
       <IsEnabled>true</IsEnabled>
@@ -77,8 +77,8 @@
   </Antennas>
   <Gpis>
     <Gpi>
-      <IsEnabled>false</IsEnabled>
-      <DebounceInMs>20</DebounceInMs>
+      <IsEnabled>true</IsEnabled>
+      <DebounceInMs>0</DebounceInMs>
       <PortNumber>1</PortNumber>
     </Gpi>
     <Gpi>
@@ -99,7 +99,7 @@
   </Gpis>
   <Gpos>
     <Gpo>
-      <Mode>ReaderInventoryStatus</Mode>
+      <Mode>Normal</Mode>
       <GpoPulseDurationMsec>0</GpoPulseDurationMsec>
       <PortNumber>1</PortNumber>
     </Gpo>
@@ -125,7 +125,7 @@
     <EnableLinkMonitorMode>true</EnableLinkMonitorMode>
     <LinkDownThreshold>5</LinkDownThreshold>
   </Keepalives>
-  <HoldReportsOnDisconnect>false</HoldReportsOnDisconnect>
+  <HoldReportsOnDisconnect>true</HoldReportsOnDisconnect>
   <TxFrequenciesInMhz />
   <ReducedPowerFrequenciesInMhz />
   <SpatialConfig>

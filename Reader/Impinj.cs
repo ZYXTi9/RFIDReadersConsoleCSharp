@@ -26,8 +26,9 @@ namespace RfidReader.Reader
         public int GPIID { get; set; }
         public int GPOID { get; set; }
 
-        public Hashtable uniqueTags = new();
-        public int totalTags;
+        public static Hashtable uniqueTags = new();
+        //private List<Tag> uniqueTags = new List<Tag>();
+        public static int totalTags;
 
         public Impinj()
         {
@@ -285,10 +286,16 @@ namespace RfidReader.Reader
                         else
                         {
                             Settings settings = reader.QueryDefaultSettings();
-
                             settings.Report.IncludeAntennaPortNumber = true;
                             settings.Report.IncludeSeenCount = true;
                             settings.TagPopulationEstimate = 32;
+
+                            settings.Report.Mode = ReportMode.Individual;
+                            settings.AutoStart.Mode = AutoStartMode.Periodic;
+                            settings.AutoStart.PeriodInMs = 1000;
+                            settings.AutoStop.Mode = AutoStopMode.Duration;
+                            settings.AutoStop.DurationInMs = 5000;
+                            settings.HoldReportsOnDisconnect = true;
 
                             settings.Keepalives.Enabled = true;
                             settings.Keepalives.PeriodInMs = 3000;
@@ -1867,11 +1874,11 @@ namespace RfidReader.Reader
                     uniqueTags.Clear();
                     totalTags = 0;
                     reader.Start();
-                    //reader.TagsReported += OnTagsReported;
-                    reader.TagsReported += async (sender, report) =>
-                    {
-                        await Task.Run(() => OnTagsReported(sender, report));
-                    };
+                    reader.TagsReported += OnTagsReported;
+                    //reader.TagsReported += async (sender, report) =>
+                    //{
+                    //    await Task.Run(() => OnTagsReported(sender, report));
+                    //};
                 }
 
                 Console.ReadKey();
@@ -1886,6 +1893,7 @@ namespace RfidReader.Reader
                     cmd = new MySqlCommand(updQuery, db1.Con);
                     cmd.Parameters.Clear();
                     cmd.ExecuteNonQuery();
+                    //cmd.ExecuteNonQueryAsync();
                 }
             }
             catch (OctaneSdkException e)
@@ -1897,77 +1905,98 @@ namespace RfidReader.Reader
                 Console.WriteLine("Exception : {0}", e.Message);
             }
         }
-        private async Task OnTagsReported(ImpinjReader sender, TagReport report)
+        public void OnTagsReported(ImpinjReader sender, TagReport report)
         {
-            foreach (Tag tag in report)
+            DataTable dt = new();
+            dt.Columns.Add("EPC");
+
+            try
             {
-                string epc = tag.Epc.ToHexString();
-
-                totalTags += tag.TagSeenCount;
-
-                if (!uniqueTags.ContainsKey(epc))
+                foreach (Tag tag in report)
                 {
-                    //Console.WriteLine("Antenna : {0}, EPC : {1}",
-                    //                    tag.AntennaPortNumber, epc);
-                    Console.WriteLine("{0} ({1}) : {2} {3}",
-                                        sender.Name, sender.Address, tag.AntennaPortNumber, tag.Epc);
-                    uniqueTags.Add(epc, tag);
-                }
-                using (MySqlDatabase db = new MySqlDatabase())
-                {
-                    string selQuery1 = "SELECT * FROM reader_tbl WHERE ReaderTypeID = @ReaderTypeID AND IPAddress = @IPAddress";
-                    using (MySqlCommand cmd = new MySqlCommand(selQuery1, db.Con))
+                    var epc = tag.Epc.ToHexString();
+                    bool isFound = false;
+
+                    lock (uniqueTags.SyncRoot)
                     {
-                        if (db.Con.State != ConnectionState.Open)
+                        isFound = uniqueTags.ContainsKey(epc);
+                        if (!isFound)
                         {
-                            db.Con.Open();
+                            isFound = uniqueTags.ContainsKey(epc);
                         }
-                        cmd.Parameters.AddWithValue("@ReaderTypeID", ReaderTypeID);
-                        cmd.Parameters.AddWithValue("@IPAddress", sender.Address);
-                        var res = await cmd.ExecuteScalarAsync();
-                        if (res != null)
+                    }
+
+                    dt.Rows.Add(epc);
+
+                    totalTags += tag.TagSeenCount;
+
+                    if (!isFound)
+                    {
+                        Console.WriteLine("{0} ({1}) : {2} {3}",
+                                                sender.Name, sender.Address, tag.AntennaPortNumber, tag.Epc);
+                        uniqueTags.Add(epc, dt.Rows);
+
+                        using (MySqlDatabase db = new MySqlDatabase())
                         {
-                            ReaderID = Convert.ToInt32(res);
+                            string selQuery1 = "SELECT * FROM reader_tbl WHERE ReaderTypeID = @ReaderTypeID AND IPAddress = @IPAddress";
+                            using (MySqlCommand cmd = new MySqlCommand(selQuery1, db.Con))
+                            {
+                                if (db.Con.State != ConnectionState.Open)
+                                {
+                                    db.Con.Open();
+                                }
+                                cmd.Parameters.AddWithValue("@ReaderTypeID", ReaderTypeID);
+                                cmd.Parameters.AddWithValue("@IPAddress", sender.Address);
+                                var res = cmd.ExecuteScalar();
+                                if (res != null)
+                                {
+                                    ReaderID = Convert.ToInt32(res);
+                                }
+                            }
+                        }
+
+                        using (MySqlDatabase db1 = new MySqlDatabase())
+                        {
+                            string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @AntennaPortNumber";
+
+                            using (MySqlCommand cmd = new MySqlCommand(selQuery1, db1.Con))
+                            {
+                                cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                                cmd.Parameters.AddWithValue("@AntennaPortNumber", tag.AntennaPortNumber);
+
+                                if (db1.Con.State != ConnectionState.Open)
+                                {
+                                    db1.Con.Open();
+                                }
+                                var res = cmd.ExecuteScalar();
+                                if (res != null)
+                                {
+                                    AntennaID = Convert.ToInt32(res);
+                                }
+                            }
+                        }
+
+                        using (MySqlDatabase db2 = new MySqlDatabase())
+                        {
+                            string selQuery2 = @"SpRead";
+                            using (MySqlCommand cmd = new MySqlCommand(selQuery2, db2.Con))
+                            {
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@aID", AntennaID);
+                                cmd.Parameters.AddWithValue("@epcTag", epc);
+                                if (db2.Con.State != ConnectionState.Open)
+                                {
+                                    db2.Con.Open();
+                                }
+                                cmd.ExecuteScalar();
+                            }
                         }
                     }
                 }
-
-                using (MySqlDatabase db1 = new MySqlDatabase())
-                {
-                    string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @AntennaPortNumber";
-
-                    using (MySqlCommand cmd = new MySqlCommand(selQuery1, db1.Con))
-                    {
-                        cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
-                        cmd.Parameters.AddWithValue("@AntennaPortNumber", tag.AntennaPortNumber);
-
-                        if (db1.Con.State != ConnectionState.Open)
-                        {
-                            db1.Con.Open();
-                        }
-                        var res = await cmd.ExecuteScalarAsync();
-                        if (res != null)
-                        {
-                            AntennaID = Convert.ToInt32(res);
-                        }
-                    }
-                }
-
-                using (MySqlDatabase db2 = new MySqlDatabase())
-                {
-                    string selQuery2 = @"SpRead";
-                    using (MySqlCommand cmd = new MySqlCommand(selQuery2, db2.Con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@aID", AntennaID);
-                        cmd.Parameters.AddWithValue("@epcTag", epc);
-                        if (db2.Con.State != ConnectionState.Open)
-                        {
-                            db2.Con.Open();
-                        }
-                        await cmd.ExecuteScalarAsync();
-                    }
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         static bool ReaderIsAvailable(string address)
@@ -2172,6 +2201,13 @@ namespace RfidReader.Reader
                             {
                                 settings.Gpos.GetGpo(Convert.ToUInt16(gpoPort)).Mode = GpoMode.ReaderInventoryTagsStatus;
                             }
+
+                            settings.Report.Mode = ReportMode.Individual;
+                            settings.AutoStart.Mode = AutoStartMode.Periodic;
+                            settings.AutoStart.PeriodInMs = 1000;
+                            settings.AutoStop.Mode = AutoStopMode.Duration;
+                            settings.AutoStop.DurationInMs = 5000;
+                            settings.HoldReportsOnDisconnect = true;
 
                             reader.ApplySettings(settings);
                             reader.SaveSettings();
