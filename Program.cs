@@ -84,6 +84,7 @@ namespace RfidReader
                             string selQuery2 = "SELECT * FROM reader_tbl WHERE Status = 'Connected'";
                             cmd = new MySqlCommand(selQuery2, db2.Con);
                             MySqlDataReader dataReader2 = cmd.ExecuteReader();
+
                             if (dataReader2.HasRows)
                             {
                                 Console.WriteLine("Inventory Started");
@@ -91,8 +92,17 @@ namespace RfidReader
 
                                 while (dataReader2.Read())
                                 {
-                                    zebra.ReadTag();
-                                    impinj.ReadTag();
+                                    int rTypeID = dataReader2.GetInt32("ReaderTypeID");
+                                    string connected = dataReader2.GetString("Status");
+
+                                    if (rTypeID == 1 && connected == "Connected")
+                                    {
+                                        impinj.ReadTag();
+                                    }
+                                    if (rTypeID == 2 && connected == "Connected")
+                                    {
+                                        zebra.ReadTag();
+                                    }
                                 }
                             }
                             else

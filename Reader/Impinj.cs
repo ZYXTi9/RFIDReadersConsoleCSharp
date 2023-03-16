@@ -16,15 +16,15 @@ namespace RfidReader.Reader
 
         public static string ConnectionResult = "";
         public int ReaderTypeID { get; set; }
-        public int ReaderID { get; set; }
-        public string? HostName { get; set; }
-        public string? ReaderName { get; set; }
+        public static int ReaderID { get; set; }
+        public static string? HostName { get; set; }
+        public static string? ReaderName { get; set; }
 
         public string ReaderStatus = "";
-        public int AntennaID { get; set; }
-        public int AntennaInfoID { get; set; }
-        public int GPIID { get; set; }
-        public int GPOID { get; set; }
+        public static int AntennaID { get; set; }
+        public static int AntennaInfoID { get; set; }
+        public static int GPIID { get; set; }
+        public static int GPOID { get; set; }
 
         public static Hashtable uniqueTags = new();
         //private List<Tag> uniqueTags = new List<Tag>();
@@ -289,13 +289,6 @@ namespace RfidReader.Reader
                             settings.Report.IncludeAntennaPortNumber = true;
                             settings.Report.IncludeSeenCount = true;
                             settings.TagPopulationEstimate = 32;
-
-                            settings.Report.Mode = ReportMode.Individual;
-                            settings.AutoStart.Mode = AutoStartMode.Periodic;
-                            settings.AutoStart.PeriodInMs = 1000;
-                            settings.AutoStop.Mode = AutoStopMode.Duration;
-                            settings.AutoStop.DurationInMs = 5000;
-                            settings.HoldReportsOnDisconnect = true;
 
                             settings.Keepalives.Enabled = true;
                             settings.Keepalives.PeriodInMs = 3000;
@@ -1886,7 +1879,7 @@ namespace RfidReader.Reader
                 foreach (ImpinjReader reader in p.impinjReaders)
                 {
                     reader.Stop();
-                    Console.WriteLine("Impinj Total Tags: " + uniqueTags.Count + "(" + totalTags + ")");
+                    Console.WriteLine("\nImpinj Total Tags: " + uniqueTags.Count + "(" + totalTags + ")");
 
                     MySqlDatabase db1 = new();
                     string updQuery = "UPDATE read_tbl SET TimeOut = TIME_FORMAT(NOW(), '%h:%i:%s %p'), LogActive = 'No' WHERE LogActive = 'Yes'";
@@ -1910,33 +1903,32 @@ namespace RfidReader.Reader
             DataTable dt = new();
             dt.Columns.Add("EPC");
 
-            try
+            foreach (Tag tag in report)
             {
-                foreach (Tag tag in report)
+                var epc = tag.Epc.ToHexString();
+                bool isFound = false;
+
+                lock (uniqueTags.SyncRoot)
                 {
-                    var epc = tag.Epc.ToHexString();
-                    bool isFound = false;
-
-                    lock (uniqueTags.SyncRoot)
-                    {
-                        isFound = uniqueTags.ContainsKey(epc);
-                        if (!isFound)
-                        {
-                            isFound = uniqueTags.ContainsKey(epc);
-                        }
-                    }
-
-                    dt.Rows.Add(epc);
-
-                    totalTags += tag.TagSeenCount;
-
+                    isFound = uniqueTags.ContainsKey(epc);
                     if (!isFound)
                     {
-                        Console.WriteLine("{0} ({1}) : {2} {3}",
-                                                sender.Name, sender.Address, tag.AntennaPortNumber, tag.Epc);
-                        uniqueTags.Add(epc, dt.Rows);
+                        isFound = uniqueTags.ContainsKey(epc);
+                    }
+                }
 
-                        using (MySqlDatabase db = new MySqlDatabase())
+                dt.Rows.Add(epc);
+
+                totalTags += tag.TagSeenCount;
+
+                if (!isFound)
+                {
+                    Console.WriteLine("{0} ({1}) : {2} {3}",
+                                            sender.Name, sender.Address, tag.AntennaPortNumber, tag.Epc);
+
+                    using (MySqlDatabase db = new MySqlDatabase())
+                    {
+                        try
                         {
                             string selQuery1 = "SELECT * FROM reader_tbl WHERE ReaderTypeID = @ReaderTypeID AND IPAddress = @IPAddress";
                             using (MySqlCommand cmd = new MySqlCommand(selQuery1, db.Con))
@@ -1954,8 +1946,15 @@ namespace RfidReader.Reader
                                 }
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                    }
 
-                        using (MySqlDatabase db1 = new MySqlDatabase())
+                    using (MySqlDatabase db1 = new MySqlDatabase())
+                    {
+                        try
                         {
                             string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @AntennaPortNumber";
 
@@ -1975,8 +1974,15 @@ namespace RfidReader.Reader
                                 }
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                    }
 
-                        using (MySqlDatabase db2 = new MySqlDatabase())
+                    using (MySqlDatabase db2 = new MySqlDatabase())
+                    {
+                        try
                         {
                             string selQuery2 = @"SpRead";
                             using (MySqlCommand cmd = new MySqlCommand(selQuery2, db2.Con))
@@ -1991,29 +1997,39 @@ namespace RfidReader.Reader
                                 cmd.ExecuteScalar();
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                     }
+
+                    uniqueTags.Add(epc, dt.Rows);
+
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
             }
         }
         static bool ReaderIsAvailable(string address)
         {
-            Ping pingSender = new Ping();
-            PingOptions options = new PingOptions();
-            options.DontFragment = true;
-            byte[] buffer = Encoding.Default.GetBytes("12345");
-            PingReply reply = pingSender.Send(address, 500, buffer, options);
-            if (reply.Status == IPStatus.Success)
+            try
             {
-                ConnectionResult = "Success";
-                return true;
+                Ping pingSender = new Ping();
+                PingOptions options = new PingOptions();
+                options.DontFragment = true;
+                byte[] buffer = Encoding.Default.GetBytes("12345");
+                PingReply reply = pingSender.Send(address, 500, buffer, options);
+                if (reply.Status == IPStatus.Success)
+                {
+                    ConnectionResult = "Success";
+                    return true;
+                }
+                else
+                {
+                    ConnectionResult = "Error";
+                    return false;
+                }
             }
-            else
+            catch (PingException)
             {
-                ConnectionResult = "Error";
                 return false;
             }
         }

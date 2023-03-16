@@ -1,6 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using RfidReader.Database;
 using System.Collections;
+using System.Net.NetworkInformation;
+using System.Text;
 
 namespace RfidReader.Reader
 {
@@ -9,20 +11,22 @@ namespace RfidReader.Reader
         static Program p = new();
 
         MySqlCommand? cmd;
+
+        public static string ConnectionResult = "";
         public int ReaderTypeID { get; set; }
-        public int ReaderID { get; set; }
-        public string? HostName { get; set; }
-        public string? ReaderName { get; set; }
+        public static int ReaderID { get; set; }
+        public static string? HostName { get; set; }
+        public static string? ReaderName { get; set; }
 
-        public string ReaderStatus = "";
-        public int AntennaID { get; set; }
-        public int AntennaInfoID { get; set; }
-        public int RadioID { get; set; }
-        public int GPIID { get; set; }
-        public int GPOID { get; set; }
+        public static string ReaderStatus = "";
+        public static int AntennaID { get; set; }
+        public static int AntennaInfoID { get; set; }
+        public static int RadioID { get; set; }
+        public static int GPIID { get; set; }
+        public static int GPOID { get; set; }
 
-        public Hashtable uniqueTags = new Hashtable();
-        public int totalTags;
+        public static Hashtable uniqueTags = new Hashtable();
+        public static int totalTags;
 
         public CSL()
         {
@@ -786,6 +790,24 @@ namespace RfidReader.Reader
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+        static bool ReaderIsAvailable(string address)
+        {
+            Ping pingSender = new Ping();
+            PingOptions options = new PingOptions();
+            options.DontFragment = true;
+            byte[] buffer = Encoding.Default.GetBytes("12345");
+            PingReply reply = pingSender.Send(address, 500, buffer, options);
+            if (reply.Status == IPStatus.Success)
+            {
+                ConnectionResult = "Success";
+                return true;
+            }
+            else
+            {
+                ConnectionResult = "Error";
+                return false;
             }
         }
         private void Default()

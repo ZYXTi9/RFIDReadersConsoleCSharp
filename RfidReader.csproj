@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="CSLibrary">
+      <HintPath>lib\CSL\CSLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="LLRP">
       <HintPath>lib\LLRP.dll</HintPath>
     </Reference>

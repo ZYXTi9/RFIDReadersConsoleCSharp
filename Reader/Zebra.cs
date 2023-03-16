@@ -14,18 +14,18 @@ namespace RfidReader.Reader
 
         MySqlCommand? cmd;
         public int ReaderTypeID { get; set; }
-        public int ReaderID { get; set; }
-        public string? HostName { get; set; }
-        private int Port = 5084;
-        private int TimeOut = 0;
-        public string? ReaderName { get; set; }
+        public static int ReaderID { get; set; }
+        public static string? HostName { get; set; }
+        private static int Port = 5084;
+        private static int TimeOut = 0;
+        public static string? ReaderName { get; set; }
 
-        public string ReaderStatus = "";
-        public int AntennaID { get; set; }
-        public int AntennaInfoID { get; set; }
-        public int RadioID { get; set; }
-        public int GPIID { get; set; }
-        public int GPOID { get; set; }
+        public static string ReaderStatus = "";
+        public static int AntennaID { get; set; }
+        public static int AntennaInfoID { get; set; }
+        public static int RadioID { get; set; }
+        public static int GPIID { get; set; }
+        public static int GPOID { get; set; }
 
         readonly TagStorageSettings tagStorageSettings;
         private Symbol.RFID3.AntennaInfo antennaInfo;
@@ -35,7 +35,7 @@ namespace RfidReader.Reader
         private BackgroundWorker bgWorker;
 
         private delegate void updateRead(Events.ReadEventData eventData);
-        private updateRead updateReadHandler = null;
+        private updateRead updateReadHandler;
 
         public static Hashtable uniqueTags = new();
         public static int totalTags;
@@ -2255,6 +2255,8 @@ namespace RfidReader.Reader
                     cmd = new MySqlCommand(updQuery, db1.Con);
                     cmd.Parameters.Clear();
                     cmd.ExecuteNonQuery();
+
+                    p.MainMenu();
                 }
             }
             catch (IOException)
@@ -2290,67 +2292,74 @@ namespace RfidReader.Reader
 
             foreach (RFIDReader reader in p.zebraReaders)
             {
-                Symbol.RFID3.TagData[] tagData = reader.Actions.GetReadTags(1000);
-                if (tagData != null)
+                try
                 {
-                    for (int nIndex = 0; nIndex < tagData.Length; nIndex++)
+                    Symbol.RFID3.TagData[] tagData = reader.Actions.GetReadTags(1000);
+                    if (tagData != null)
                     {
-                        Symbol.RFID3.TagData tag = tagData[nIndex];
-                        string epc = tag.TagID.ToString();
-                        bool isFound = false;
-
-                        lock (uniqueTags.SyncRoot)
+                        for (int nIndex = 0; nIndex < tagData.Length; nIndex++)
                         {
-                            isFound = uniqueTags.ContainsKey(epc);
-                            if (!isFound)
+                            Symbol.RFID3.TagData tag = tagData[nIndex];
+                            string epc = tag.TagID.ToString();
+                            bool isFound = false;
+
+                            lock (uniqueTags.SyncRoot)
                             {
                                 isFound = uniqueTags.ContainsKey(epc);
+                                if (!isFound)
+                                {
+                                    isFound = uniqueTags.ContainsKey(epc);
+                                }
                             }
-                        }
 
-                        dt.Rows.Add(epc);
+                            dt.Rows.Add(epc);
 
-                        totalTags += tag.TagSeenCount;
+                            totalTags += tag.TagSeenCount;
 
-                        if (!isFound)
-                        {
-                            Console.WriteLine($"{epc} {tag.AntennaID}");
-
-                            MySqlDatabase db1 = new();
-                            string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @Antenna";
-
-                            cmd = new MySqlCommand(selQuery1, db1.Con);
-                            cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
-                            cmd.Parameters.AddWithValue("@Antenna", tag.AntennaID);
-
-                            if (db1.Con.State != ConnectionState.Open)
+                            if (!isFound)
                             {
-                                db1.Con.Open();
-                            }
-                            var res = cmd.ExecuteScalar();
-                            if (res != null)
-                            {
-                                AntennaID = Convert.ToInt32(res);
-                            }
-                            db1.Con.Close();
+                                Console.WriteLine($"{epc} {tag.AntennaID}");
 
-                            MySqlDatabase db2 = new();
-                            string selQuery2 = @"SpRead";
-                            cmd = new MySqlCommand(selQuery2, db2.Con);
-                            cmd.CommandType = CommandType.StoredProcedure;
+                                MySqlDatabase db1 = new();
+                                string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @Antenna";
 
-                            cmd.Parameters.AddWithValue("@aID", AntennaID);
-                            cmd.Parameters.AddWithValue("@epcTag", epc);
-                            if (db2.Con.State != ConnectionState.Open)
-                            {
-                                db2.Con.Open();
+                                cmd = new MySqlCommand(selQuery1, db1.Con);
+                                cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                                cmd.Parameters.AddWithValue("@Antenna", tag.AntennaID);
+
+                                if (db1.Con.State != ConnectionState.Open)
+                                {
+                                    db1.Con.Open();
+                                }
+                                var res = cmd.ExecuteScalar();
+                                if (res != null)
+                                {
+                                    AntennaID = Convert.ToInt32(res);
+                                }
+                                db1.Con.Close();
+
+                                MySqlDatabase db2 = new();
+                                string selQuery2 = @"SpRead";
+                                cmd = new MySqlCommand(selQuery2, db2.Con);
+                                cmd.CommandType = CommandType.StoredProcedure;
+
+                                cmd.Parameters.AddWithValue("@aID", AntennaID);
+                                cmd.Parameters.AddWithValue("@epcTag", epc);
+                                if (db2.Con.State != ConnectionState.Open)
+                                {
+                                    db2.Con.Open();
+                                }
+                                cmd.ExecuteScalar();
+                                db2.Con.Close();
+
+                                uniqueTags.Add(epc, dt.Rows);
                             }
-                            cmd.ExecuteScalar();
-                            db2.Con.Close();
-
-                            uniqueTags.Add(epc, dt.Rows);
                         }
                     }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("An error occurred while processing the RFID tags: " + ex.Message);
                 }
             }
         }
@@ -2387,7 +2396,7 @@ namespace RfidReader.Reader
         {
             return antennaInfo;
         }
-        private void Default(RFIDReader? reader)
+        private void Default(RFIDReader reader)
         {
             Antennas.RFMode rfMode;
             Antennas.SingulationControl singularControl;

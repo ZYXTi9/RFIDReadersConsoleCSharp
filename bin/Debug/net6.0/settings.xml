@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-16"?>
 <Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <AutoStart>
-    <Mode>Periodic</Mode>
+    <Mode>None</Mode>
     <GpiPortNumber>0</GpiPortNumber>
     <GpiLevel>false</GpiLevel>
     <FirstDelayInMs>0</FirstDelayInMs>
-    <PeriodInMs>1000</PeriodInMs>
+    <PeriodInMs>0</PeriodInMs>
     <UtcTimestamp>0</UtcTimestamp>
   </AutoStart>
   <AutoStop>
-    <Mode>Duration</Mode>
-    <DurationInMs>5000</DurationInMs>
+    <Mode>None</Mode>
+    <DurationInMs>0</DurationInMs>
     <GpiPortNumber>0</GpiPortNumber>
     <GpiLevel>false</GpiLevel>
     <Timeout>0</Timeout>
@@ -60,10 +60,10 @@
       <IsEnabled>true</IsEnabled>
       <PortNumber>1</PortNumber>
       <PortName>Antenna Port 1</PortName>
-      <TxPowerInDbm>0</TxPowerInDbm>
-      <RxSensitivityInDbm>0</RxSensitivityInDbm>
-      <MaxRxSensitivity>true</MaxRxSensitivity>
-      <MaxTxPower>true</MaxTxPower>
+      <TxPowerInDbm>32</TxPowerInDbm>
+      <RxSensitivityInDbm>-70</RxSensitivityInDbm>
+      <MaxRxSensitivity>false</MaxRxSensitivity>
+      <MaxTxPower>false</MaxTxPower>
     </Antenna>
     <Antenna>
       <IsEnabled>true</IsEnabled>
@@ -125,7 +125,7 @@
     <EnableLinkMonitorMode>true</EnableLinkMonitorMode>
     <LinkDownThreshold>5</LinkDownThreshold>
   </Keepalives>
-  <HoldReportsOnDisconnect>true</HoldReportsOnDisconnect>
+  <HoldReportsOnDisconnect>false</HoldReportsOnDisconnect>
   <TxFrequenciesInMhz />
   <ReducedPowerFrequenciesInMhz />
   <SpatialConfig>
