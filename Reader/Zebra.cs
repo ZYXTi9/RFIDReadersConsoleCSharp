@@ -151,7 +151,7 @@ namespace RfidReader.Reader
                                     ReaderName = dataReader2.GetString("DeviceName");
                                     ReaderStatus = dataReader2.GetString("Status");
 
-                                    var targetReader = p.zebraReaders.Where(x => x.HostName == HostName).FirstOrDefault();
+                                    var targetReader = Program.zebraReaders.Where(x => x.HostName == HostName).FirstOrDefault();
 
                                     if (targetReader != null)
                                     {
@@ -207,7 +207,7 @@ namespace RfidReader.Reader
                 if (reader == null)
                 {
                     reader = new RFIDReader(HostName, Convert.ToUInt32(Port), Convert.ToUInt32(TimeOut));
-                    p.zebraReaders.Add(reader);
+                    Program.zebraReaders.Add(reader);
                 }
 
                 reader.Connect();
@@ -246,7 +246,7 @@ namespace RfidReader.Reader
                     cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
                     MySqlDataReader dataReader4 = cmd.ExecuteReader();
 
-                    var targetReader = p.zebraReaders.Where(x => x.HostName == HostName).FirstOrDefault();
+                    var targetReader = Program.zebraReaders.Where(x => x.HostName == HostName).FirstOrDefault();
 
                     if (dataReader4.HasRows)
                     {
@@ -274,6 +274,7 @@ namespace RfidReader.Reader
                 }
                 else
                 {
+                    Console.WriteLine("Reader is not connected to the network");
                     return false;
                 }
             }
@@ -361,7 +362,7 @@ namespace RfidReader.Reader
                                     ReaderName = dataReader2.GetString("DeviceName");
                                     ReaderStatus = dataReader2.GetString("Status");
 
-                                    var targetReader = p.zebraReaders.Where(x => x.HostName == HostName).FirstOrDefault();
+                                    var targetReader = Program.zebraReaders.Where(x => x.HostName == HostName).FirstOrDefault();
 
                                     if (targetReader == null)
                                     {
@@ -2231,7 +2232,7 @@ namespace RfidReader.Reader
         {
             try
             {
-                foreach (RFIDReader reader in p.zebraReaders)
+                foreach (RFIDReader reader in Program.zebraReaders)
                 {
                     uniqueTags.Clear();
                     totalTags = 0;
@@ -2245,7 +2246,7 @@ namespace RfidReader.Reader
 
                 Console.ReadKey();
 
-                foreach (RFIDReader reader in p.zebraReaders)
+                foreach (RFIDReader reader in Program.zebraReaders)
                 {
                     reader.Actions.Inventory.Stop();
                     Console.WriteLine("\nZebra Total Tags: " + uniqueTags.Count + "(" + totalTags + ")");
@@ -2255,8 +2256,6 @@ namespace RfidReader.Reader
                     cmd = new MySqlCommand(updQuery, db1.Con);
                     cmd.Parameters.Clear();
                     cmd.ExecuteNonQuery();
-
-                    p.MainMenu();
                 }
             }
             catch (IOException)
@@ -2290,7 +2289,7 @@ namespace RfidReader.Reader
 
             dt.Columns.Add("EPC");
 
-            foreach (RFIDReader reader in p.zebraReaders)
+            foreach (RFIDReader reader in Program.zebraReaders)
             {
                 try
                 {
@@ -2366,7 +2365,7 @@ namespace RfidReader.Reader
         private void BgWorker_RunWorkerCompleted(object? sender,
             RunWorkerCompletedEventArgs connectEventArgs)
         {
-            foreach (RFIDReader reader in p.zebraReaders)
+            foreach (RFIDReader reader in Program.zebraReaders)
             {
                 reader.Events.ReadNotify += new Events.ReadNotifyHandler(EventsReadNotify);
                 reader.Events.AttachTagDataWithReadEvent = false;
@@ -2405,6 +2404,7 @@ namespace RfidReader.Reader
 
             try
             {
+                //Antenna
                 MySqlDatabase db1 = new();
 
                 string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID";

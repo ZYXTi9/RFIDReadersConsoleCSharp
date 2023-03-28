@@ -134,7 +134,7 @@ namespace RfidReader.Reader
                                     ReaderName = dataReader2.GetString("DeviceName");
                                     ReaderStatus = dataReader2.GetString("Status");
 
-                                    var targetReader = p.impinjReaders.Where(x => x.Address == HostName).FirstOrDefault();
+                                    var targetReader = Program.impinjReaders.Where(x => x.Address == HostName).FirstOrDefault();
 
                                     if (targetReader != null)
                                     {
@@ -222,7 +222,7 @@ namespace RfidReader.Reader
                     if (reader == null)
                     {
                         reader = new ImpinjReader(HostName, ReaderName);
-                        p.impinjReaders.Add(reader);
+                        Program.impinjReaders.Add(reader);
                     }
 
                     reader.Connect();
@@ -270,7 +270,7 @@ namespace RfidReader.Reader
                             }
                             db2.Con.Close();
 
-                            var targetReader = p.impinjReaders.Where(x => x.Address == HostName).FirstOrDefault();
+                            var targetReader = Program.impinjReaders.Where(x => x.Address == HostName).FirstOrDefault();
 
                             if (targetReader != null)
                             {
@@ -289,6 +289,13 @@ namespace RfidReader.Reader
                             settings.Report.IncludeAntennaPortNumber = true;
                             settings.Report.IncludeSeenCount = true;
                             settings.TagPopulationEstimate = 32;
+
+                            settings.Report.Mode = ReportMode.Individual;
+                            settings.AutoStart.Mode = AutoStartMode.Periodic;
+                            settings.AutoStart.PeriodInMs = 1000;
+                            settings.AutoStop.Mode = AutoStopMode.Duration;
+                            settings.AutoStop.DurationInMs = 5000;
+                            settings.HoldReportsOnDisconnect = true;
 
                             settings.Keepalives.Enabled = true;
                             settings.Keepalives.PeriodInMs = 3000;
@@ -555,7 +562,7 @@ namespace RfidReader.Reader
                                     ReaderName = dataReader2.GetString("DeviceName");
                                     ReaderStatus = dataReader2.GetString("Status");
 
-                                    var targetReader = p.impinjReaders.Where(x => x.Address == HostName).FirstOrDefault();
+                                    var targetReader = Program.impinjReaders.Where(x => x.Address == HostName).FirstOrDefault();
 
                                     if (targetReader == null)
                                     {
@@ -935,7 +942,9 @@ namespace RfidReader.Reader
 
                 try
                 {
+
                     option = Convert.ToInt32(Console.ReadLine());
+
                     switch (option)
                     {
                         case 1:
@@ -981,7 +990,9 @@ namespace RfidReader.Reader
 
                 try
                 {
+
                     option = Convert.ToInt32(Console.ReadLine());
+
                     switch (option)
                     {
                         case 1:
@@ -1108,8 +1119,7 @@ namespace RfidReader.Reader
         private void EnableDisableAntenna(ImpinjReader reader)
         {
             bool isWorking = true;
-            int option;
-            int antenna;
+            int option, antenna;
 
             while (isWorking)
             {
@@ -1862,7 +1872,7 @@ namespace RfidReader.Reader
         {
             try
             {
-                foreach (ImpinjReader reader in p.impinjReaders)
+                foreach (ImpinjReader reader in Program.impinjReaders)
                 {
                     uniqueTags.Clear();
                     totalTags = 0;
@@ -1876,7 +1886,7 @@ namespace RfidReader.Reader
 
                 Console.ReadKey();
 
-                foreach (ImpinjReader reader in p.impinjReaders)
+                foreach (ImpinjReader reader in Program.impinjReaders)
                 {
                     reader.Stop();
                     Console.WriteLine("\nImpinj Total Tags: " + uniqueTags.Count + "(" + totalTags + ")");
@@ -1908,6 +1918,8 @@ namespace RfidReader.Reader
                 var epc = tag.Epc.ToHexString();
                 bool isFound = false;
 
+                totalTags += tag.TagSeenCount;
+
                 lock (uniqueTags.SyncRoot)
                 {
                     isFound = uniqueTags.ContainsKey(epc);
@@ -1919,12 +1931,12 @@ namespace RfidReader.Reader
 
                 dt.Rows.Add(epc);
 
-                totalTags += tag.TagSeenCount;
-
                 if (!isFound)
                 {
                     Console.WriteLine("{0} ({1}) : {2} {3}",
                                             sender.Name, sender.Address, tag.AntennaPortNumber, tag.Epc);
+
+                    uniqueTags.Add(epc, dt.Rows);
 
                     using (MySqlDatabase db = new MySqlDatabase())
                     {
@@ -2002,9 +2014,6 @@ namespace RfidReader.Reader
                             Console.WriteLine(ex.Message);
                         }
                     }
-
-                    uniqueTags.Add(epc, dt.Rows);
-
                 }
             }
         }
@@ -2217,13 +2226,6 @@ namespace RfidReader.Reader
                             {
                                 settings.Gpos.GetGpo(Convert.ToUInt16(gpoPort)).Mode = GpoMode.ReaderInventoryTagsStatus;
                             }
-
-                            settings.Report.Mode = ReportMode.Individual;
-                            settings.AutoStart.Mode = AutoStartMode.Periodic;
-                            settings.AutoStart.PeriodInMs = 1000;
-                            settings.AutoStop.Mode = AutoStopMode.Duration;
-                            settings.AutoStop.DurationInMs = 5000;
-                            settings.HoldReportsOnDisconnect = true;
 
                             reader.ApplySettings(settings);
                             reader.SaveSettings();

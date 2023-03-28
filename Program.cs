@@ -1,4 +1,5 @@
-﻿using Impinj.OctaneSdk;
+﻿using CSLibrary;
+using Impinj.OctaneSdk;
 using MySql.Data.MySqlClient;
 using RfidReader.Database;
 using Symbol.RFID3;
@@ -10,9 +11,9 @@ namespace RfidReader
     {
         MySqlCommand? cmd;
 
-        public List<ImpinjReader> impinjReaders = new List<ImpinjReader>();
-        public List<RFIDReader> zebraReaders = new List<RFIDReader>();
-        public List<string> cslReaders = new List<string>();
+        public static List<ImpinjReader> impinjReaders = new List<ImpinjReader>();
+        public static List<RFIDReader> zebraReaders = new List<RFIDReader>();
+        public static List<HighLevelInterface> cslReaders = new List<HighLevelInterface>();
 
         delegate bool ConsoleCtrlDelegate(int ctrlType);
         static void Main(string[] args)
@@ -35,7 +36,7 @@ namespace RfidReader
                 string selQuery = "SELECT ReaderType FROM reader_type_tbl";
                 cmd = new MySqlCommand(selQuery, db.Con);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
-                Console.WriteLine("Choose Setup");
+                Console.WriteLine("\nChoose Setup");
                 while (dataReader.Read())
                 {
                     for (int i = 0; i < dataReader.FieldCount; i++)
@@ -104,10 +105,12 @@ namespace RfidReader
                                         zebra.ReadTag();
                                     }
                                 }
+                                MainMenu();
                             }
                             else
                             {
-                                Console.WriteLine("No Reader Connected");
+                                Console.WriteLine("\nNo Reader Connected\n");
+                                MainMenu();
                             }
                         }
                     }

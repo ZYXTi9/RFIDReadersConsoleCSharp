@@ -11,6 +11,8 @@ Global
 		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
+		VS2008 Release|Any CPU = VS2008 Release|Any CPU
+		VS2008 Release|x86 = VS2008 Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{6EC8229E-C497-4490-95CB-BFCE0775CF0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6EC8229E-C497-4490-95CB-BFCE0775CF0F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6EC8229E-C497-4490-95CB-BFCE0775CF0F}.Release|x86.ActiveCfg = Release|Any CPU
 		{6EC8229E-C497-4490-95CB-BFCE0775CF0F}.Release|x86.Build.0 = Release|Any CPU
+		{6EC8229E-C497-4490-95CB-BFCE0775CF0F}.VS2008 Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC8229E-C497-4490-95CB-BFCE0775CF0F}.VS2008 Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC8229E-C497-4490-95CB-BFCE0775CF0F}.VS2008 Release|x86.ActiveCfg = Release|Any CPU
+		{6EC8229E-C497-4490-95CB-BFCE0775CF0F}.VS2008 Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

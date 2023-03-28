@@ -60,7 +60,7 @@
       <IsEnabled>true</IsEnabled>
       <PortNumber>1</PortNumber>
       <PortName>Antenna Port 1</PortName>
-      <TxPowerInDbm>32</TxPowerInDbm>
+      <TxPowerInDbm>15</TxPowerInDbm>
       <RxSensitivityInDbm>-70</RxSensitivityInDbm>
       <MaxRxSensitivity>false</MaxRxSensitivity>
       <MaxTxPower>false</MaxTxPower>
@@ -69,10 +69,10 @@
       <IsEnabled>true</IsEnabled>
       <PortNumber>2</PortNumber>
       <PortName>Antenna Port 2</PortName>
-      <TxPowerInDbm>0</TxPowerInDbm>
-      <RxSensitivityInDbm>0</RxSensitivityInDbm>
-      <MaxRxSensitivity>true</MaxRxSensitivity>
-      <MaxTxPower>true</MaxTxPower>
+      <TxPowerInDbm>12</TxPowerInDbm>
+      <RxSensitivityInDbm>-70</RxSensitivityInDbm>
+      <MaxRxSensitivity>false</MaxRxSensitivity>
+      <MaxTxPower>false</MaxTxPower>
     </Antenna>
   </Antennas>
   <Gpis>

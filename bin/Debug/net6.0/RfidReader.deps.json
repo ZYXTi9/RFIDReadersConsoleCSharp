@@ -15,6 +15,7 @@
           "MySql.Data": "8.0.31",
           "Newtonsoft.Json": "13.0.2",
           "OctaneSDK": "3.0.0",
+          "System.IO.Ports": "8.0.0-preview.2.23128.3",
           "CSLibrary": "3.0.142.0",
           "Symbol.RFID3.Host": "1.2.0.0"
         },
@@ -274,16 +275,70 @@
           }
         }
       },
+      "runtime.linux-arm.runtime.native.System.IO.Ports/8.0.0-preview.2.23128.3": {
+        "runtimeTargets": {
+          "runtimes/linux-arm/native/libSystem.IO.Ports.Native.so": {
+            "rid": "linux-arm",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "runtime.linux-arm64.runtime.native.System.IO.Ports/8.0.0-preview.2.23128.3": {
+        "runtimeTargets": {
+          "runtimes/linux-arm64/native/libSystem.IO.Ports.Native.so": {
+            "rid": "linux-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "runtime.linux-x64.runtime.native.System.IO.Ports/8.0.0-preview.2.23128.3": {
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/libSystem.IO.Ports.Native.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "runtime.native.System/4.0.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
           "Microsoft.NETCore.Targets": "1.0.1"
         }
       },
+      "runtime.native.System.IO.Ports/8.0.0-preview.2.23128.3": {
+        "dependencies": {
+          "runtime.linux-arm.runtime.native.System.IO.Ports": "8.0.0-preview.2.23128.3",
+          "runtime.linux-arm64.runtime.native.System.IO.Ports": "8.0.0-preview.2.23128.3",
+          "runtime.linux-x64.runtime.native.System.IO.Ports": "8.0.0-preview.2.23128.3",
+          "runtime.osx-arm64.runtime.native.System.IO.Ports": "8.0.0-preview.2.23128.3",
+          "runtime.osx-x64.runtime.native.System.IO.Ports": "8.0.0-preview.2.23128.3"
+        }
+      },
       "runtime.native.System.Security.Cryptography/4.0.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
           "Microsoft.NETCore.Targets": "1.0.1"
+        }
+      },
+      "runtime.osx-arm64.runtime.native.System.IO.Ports/8.0.0-preview.2.23128.3": {
+        "runtimeTargets": {
+          "runtimes/osx-arm64/native/libSystem.IO.Ports.Native.dylib": {
+            "rid": "osx-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "runtime.osx-x64.runtime.native.System.IO.Ports/8.0.0-preview.2.23128.3": {
+        "runtimeTargets": {
+          "runtimes/osx-x64/native/libSystem.IO.Ports.Native.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
         }
       },
       "SSH.NET/2016.1.0": {
@@ -473,6 +528,31 @@
       "System.IO.FileSystem.Primitives/4.0.1": {
         "dependencies": {
           "System.Runtime": "4.1.0"
+        }
+      },
+      "System.IO.Ports/8.0.0-preview.2.23128.3": {
+        "dependencies": {
+          "runtime.native.System.IO.Ports": "8.0.0-preview.2.23128.3"
+        },
+        "runtime": {
+          "lib/net6.0/System.IO.Ports.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.12803"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/net6.0/System.IO.Ports.dll": {
+            "rid": "unix",
+            "assetType": "runtime",
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.12803"
+          },
+          "runtimes/win/lib/net6.0/System.IO.Ports.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.12803"
+          }
         }
       },
       "System.Linq/4.1.0": {
@@ -1094,6 +1174,27 @@
       "path": "portable.bouncycastle/1.9.0",
       "hashPath": "portable.bouncycastle.1.9.0.nupkg.sha512"
     },
+    "runtime.linux-arm.runtime.native.System.IO.Ports/8.0.0-preview.2.23128.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/hrPBeMpzSapU8ea7RR4HfSC25tRgTtdAkwhLogJmdgoWvjVhOO1ePbxC0mTaWFsrBuRRJOKXJCwoeq/yvp7AA==",
+      "path": "runtime.linux-arm.runtime.native.system.io.ports/8.0.0-preview.2.23128.3",
+      "hashPath": "runtime.linux-arm.runtime.native.system.io.ports.8.0.0-preview.2.23128.3.nupkg.sha512"
+    },
+    "runtime.linux-arm64.runtime.native.System.IO.Ports/8.0.0-preview.2.23128.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ncrGERIdfJlaqycHlus/1F/4J0ydtSPal2UiMq1qxoidNf6GJZfruwtmMwlU6ZSG2Fd0jmcR8G8FWjUO8sxD2A==",
+      "path": "runtime.linux-arm64.runtime.native.system.io.ports/8.0.0-preview.2.23128.3",
+      "hashPath": "runtime.linux-arm64.runtime.native.system.io.ports.8.0.0-preview.2.23128.3.nupkg.sha512"
+    },
+    "runtime.linux-x64.runtime.native.System.IO.Ports/8.0.0-preview.2.23128.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-88jianpSqusZDyR5FICyVwSPsfpetwC3q8QZyb2LXDkAtrrUFAHaA/cew4rDQ5FDDg892jR8SZJm0yJHXICSRg==",
+      "path": "runtime.linux-x64.runtime.native.system.io.ports/8.0.0-preview.2.23128.3",
+      "hashPath": "runtime.linux-x64.runtime.native.system.io.ports.8.0.0-preview.2.23128.3.nupkg.sha512"
+    },
     "runtime.native.System/4.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1101,12 +1202,33 @@
       "path": "runtime.native.system/4.0.0",
       "hashPath": "runtime.native.system.4.0.0.nupkg.sha512"
     },
+    "runtime.native.System.IO.Ports/8.0.0-preview.2.23128.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ui6CFaYcf/S6UGTPLit//rTpY7K2GP8Y5Q6HZkWlFxP7bohjwDI+PyHQC3Si2eAcCXHBArFnw5/psSJXgUrbXQ==",
+      "path": "runtime.native.system.io.ports/8.0.0-preview.2.23128.3",
+      "hashPath": "runtime.native.system.io.ports.8.0.0-preview.2.23128.3.nupkg.sha512"
+    },
     "runtime.native.System.Security.Cryptography/4.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-2CQK0jmO6Eu7ZeMgD+LOFbNJSXHFVQbCJJkEyEwowh1SCgYnrn9W9RykMfpeeVGw7h4IBvYikzpGUlmZTUafJw==",
       "path": "runtime.native.system.security.cryptography/4.0.0",
       "hashPath": "runtime.native.system.security.cryptography.4.0.0.nupkg.sha512"
+    },
+    "runtime.osx-arm64.runtime.native.System.IO.Ports/8.0.0-preview.2.23128.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4RnJ/LU+QKyDVVHTofQ7sroZjZ338BQd0UjxjUzPp373m1YPWU8/QQSnIkl60ez04PFCW0O/ykayD93OyadPDQ==",
+      "path": "runtime.osx-arm64.runtime.native.system.io.ports/8.0.0-preview.2.23128.3",
+      "hashPath": "runtime.osx-arm64.runtime.native.system.io.ports.8.0.0-preview.2.23128.3.nupkg.sha512"
+    },
+    "runtime.osx-x64.runtime.native.System.IO.Ports/8.0.0-preview.2.23128.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-55lyAgs+imcmte/J1MmNgAi2jm8FSXnJyXsMMugT47thH6PQIgdjslwdp38MS4257Cw/dcUQElBjhKc+ujFiPQ==",
+      "path": "runtime.osx-x64.runtime.native.system.io.ports/8.0.0-preview.2.23128.3",
+      "hashPath": "runtime.osx-x64.runtime.native.system.io.ports.8.0.0-preview.2.23128.3.nupkg.sha512"
     },
     "SSH.NET/2016.1.0": {
       "type": "package",
@@ -1219,6 +1341,13 @@
       "sha512": "sha512-kWkKD203JJKxJeE74p8aF8y4Qc9r9WQx4C0cHzHPrY3fv/L/IhWnyCHaFJ3H1QPOH6A93whlQ2vG5nHlBDvzWQ==",
       "path": "system.io.filesystem.primitives/4.0.1",
       "hashPath": "system.io.filesystem.primitives.4.0.1.nupkg.sha512"
+    },
+    "System.IO.Ports/8.0.0-preview.2.23128.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ytfhio5DmnawQNwNuO1gsLsqgMHEt1xq64PYo0SsrqfX1s+2lv0hGR8Dp2h7k3OUh2YC32dz7SnSW4NZM78cmA==",
+      "path": "system.io.ports/8.0.0-preview.2.23128.3",
+      "hashPath": "system.io.ports.8.0.0-preview.2.23128.3.nupkg.sha512"
     },
     "System.Linq/4.1.0": {
       "type": "package",
