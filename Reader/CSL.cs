@@ -1,5 +1,6 @@
 ﻿using CSLibrary;
 using CSLibrary.Constants;
+using CSLibrary.Structures;
 using MySql.Data.MySqlClient;
 using RfidReader.Database;
 using System.Collections;
@@ -69,15 +70,14 @@ namespace RfidReader.Reader
         public static int GPOID { get; set; }
 
         public static reader_info[] rdr_info_data = new reader_info[100];
-        AntennaList AntenneConfig;
 
-        CSLibrary.Constants.Result ret;
+        AntennaList AntennaConfig;
+        Result ret;
         public static Hashtable uniqueTags = new Hashtable();
         public static int totalTags;
 
         public CSL()
         {
-            AntenneConfig = new AntennaList();
             totalTags = 0;
         }
 
@@ -661,7 +661,7 @@ namespace RfidReader.Reader
 
                             break;
                         case 2:
-                            DisplayPower();
+                            DisplayPower(reader);
                             break;
                         case 3:
                             isWorking = false;
@@ -685,8 +685,13 @@ namespace RfidReader.Reader
                 }
             }
         }
-        private void DisplayPower()
+        private void DisplayPower(HighLevelInterface reader)
         {
+            for (int i = 0; i < reader.AntennaList.Count; i++)
+            {
+                Console.WriteLine(reader.AntennaList[(i)].PowerLevel);
+            }
+
             try
             {
                 MySqlDatabase db = new();
@@ -701,12 +706,10 @@ namespace RfidReader.Reader
                     while (dataReader.Read())
                     {
                         int antenna = dataReader.GetInt32("Antenna");
-                        double rxSensitivity = dataReader.GetDouble("ReceiveSensitivity");
-                        double txPower = dataReader.GetDouble("TransmitPower");
+                        int power = dataReader.GetInt32("TransmitPower");
 
                         Console.WriteLine("Antenna                     : {0} ", antenna);
-                        Console.WriteLine("ReceiveSensitivityIndex     : {0} ", rxSensitivity);
-                        Console.WriteLine("TransmitPowerIndex          : {0} \n", txPower);
+                        Console.WriteLine("TransmitPowerIndex          : {0} \n", power);
                     }
                     db.Con.Close();
                 }
@@ -718,260 +721,266 @@ namespace RfidReader.Reader
         }
         private void EnableDisableAntenna(HighLevelInterface reader)
         {
-            //    bool isWorking = true;
-            //    int antenna, option, antennaStatus;
+            bool isWorking = true;
+            int antenna, option, antennaStatus;
 
-            //    while (isWorking)
-            //    {
-            //        Console.WriteLine("\n----Command Menu----");
-            //        Console.WriteLine("1. Set Antenna Port");
-            //        Console.WriteLine("2. Get Antenna Port Info");
-            //        Console.WriteLine("3. Set Enable All Antenna Port");
-            //        Console.WriteLine("4. Go back\n");
-            //        Console.Write("[1-4] : ");
+            while (isWorking)
+            {
+                Console.WriteLine("\n----Command Menu----");
+                Console.WriteLine("1. Set Antenna Port");
+                Console.WriteLine("2. Get Antenna Port Info");
+                Console.WriteLine("3. Set Enable All Antenna Port");
+                Console.WriteLine("4. Go back\n");
+                Console.Write("[1-4] : ");
 
-            //        try
-            //        {
+                try
+                {
 
-            //            option = Convert.ToInt32(Console.ReadLine());
+                    option = Convert.ToInt32(Console.ReadLine());
 
-            //            switch (option)
-            //            {
-            //                case 1:
-            //                    try
-            //                    {
-            //                        Console.Write("\nAntenna : ");
-            //                        antenna = Convert.ToInt32(Console.ReadLine());
+                    switch (option)
+                    {
+                        case 1:
+                            //try
+                            //{
+                            //    Console.Write("\nAntenna : ");
+                            //    antenna = Convert.ToInt32(Console.ReadLine());
 
-            //                        if (antenna <= 0 || antenna > reader.)
-            //                        {
-            //                            Console.WriteLine("Enter a valid Antenna in the range 1-" + reader.ReaderCapabilities.NumAntennaSupported);
-            //                            continue;
-            //                        }
+                            //    if (antenna <= 0 || antenna > reader.)
+                            //    {
+                            //        Console.WriteLine("Enter a valid Antenna in the range 1-" + reader.ReaderCapabilities.NumAntennaSupported);
+                            //        continue;
+                            //    }
 
-            //                        MySqlDatabase db1 = new();
+                            //    MySqlDatabase db1 = new();
 
-            //                        string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @Antenna";
+                            //    string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @Antenna";
 
-            //                        cmd = new MySqlCommand(selQuery1, db1.Con);
-            //                        cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
-            //                        cmd.Parameters.AddWithValue("@Antenna", antenna);
+                            //    cmd = new MySqlCommand(selQuery1, db1.Con);
+                            //    cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                            //    cmd.Parameters.AddWithValue("@Antenna", antenna);
 
-            //                        if (db1.Con.State != ConnectionState.Open)
-            //                        {
-            //                            db1.Con.Open();
-            //                        }
-            //                        var getAntennaID1 = cmd.ExecuteScalar();
-            //                        if (getAntennaID1 != null)
-            //                        {
-            //                            AntennaID = Convert.ToInt32(getAntennaID1);
-            //                        }
-            //                        db1.Con.Close();
+                            //    if (db1.Con.State != ConnectionState.Open)
+                            //    {
+                            //        db1.Con.Open();
+                            //    }
+                            //    var getAntennaID1 = cmd.ExecuteScalar();
+                            //    if (getAntennaID1 != null)
+                            //    {
+                            //        AntennaID = Convert.ToInt32(getAntennaID1);
+                            //    }
+                            //    db1.Con.Close();
 
-            //                        Console.WriteLine("\n[0] OFF");
-            //                        Console.WriteLine("[1] ON");
-            //                        Console.Write("Option : ");
+                            //    Console.WriteLine("\n[0] OFF");
+                            //    Console.WriteLine("[1] ON");
+                            //    Console.Write("Option : ");
 
-            //                        antennaStatus = Convert.ToInt32(Console.ReadLine());
+                            //    antennaStatus = Convert.ToInt32(Console.ReadLine());
 
-            //                        if (antennaStatus == 0)
-            //                        {
-            //                            if (statusList.Contains(antenna))
-            //                            {
-            //                                statusList.Remove(Convert.ToInt32(antenna));
+                            //    if (antennaStatus == 0)
+                            //    {
+                            //        if (statusList.Contains(antenna))
+                            //        {
+                            //            statusList.Remove(Convert.ToInt32(antenna));
 
-            //                                if (statusList.Count == 0)
-            //                                {
-            //                                    foreach (ushort x in antID)
-            //                                    {
-            //                                        statusList.Add(x);
-            //                                        statusList.Sort();
-            //                                    }
+                            //            if (statusList.Count == 0)
+                            //            {
+                            //                foreach (ushort x in antID)
+                            //                {
+                            //                    statusList.Add(x);
+                            //                    statusList.Sort();
+                            //                }
 
-            //                                    MySqlDatabase db2 = new();
+                            //                MySqlDatabase db2 = new();
 
-            //                                    for (int i = 0; i < reader.ReaderCapabilities.NumAntennaSupported; i++)
-            //                                    {
-            //                                        string selQuery2 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @Antenna";
-            //                                        cmd = new MySqlCommand(selQuery2, db2.Con);
-            //                                        cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
-            //                                        cmd.Parameters.AddWithValue("@Antenna", (i + 1));
+                            //                for (int i = 0; i < reader.ReaderCapabilities.NumAntennaSupported; i++)
+                            //                {
+                            //                    string selQuery2 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @Antenna";
+                            //                    cmd = new MySqlCommand(selQuery2, db2.Con);
+                            //                    cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                            //                    cmd.Parameters.AddWithValue("@Antenna", (i + 1));
 
-            //                                        if (db2.Con.State != ConnectionState.Open)
-            //                                        {
-            //                                            db2.Con.Open();
-            //                                        }
+                            //                    if (db2.Con.State != ConnectionState.Open)
+                            //                    {
+                            //                        db2.Con.Open();
+                            //                    }
 
-            //                                        MySqlDataReader dataReader2 = cmd.ExecuteReader();
+                            //                    MySqlDataReader dataReader2 = cmd.ExecuteReader();
 
-            //                                        if (dataReader2.HasRows)
-            //                                        {
-            //                                            dataReader2.Close();
-            //                                            var getAntennaID2 = cmd.ExecuteScalar();
-            //                                            if (getAntennaID2 != null)
-            //                                            {
-            //                                                AntennaID = Convert.ToInt32(getAntennaID2);
-            //                                            }
+                            //                    if (dataReader2.HasRows)
+                            //                    {
+                            //                        dataReader2.Close();
+                            //                        var getAntennaID2 = cmd.ExecuteScalar();
+                            //                        if (getAntennaID2 != null)
+                            //                        {
+                            //                            AntennaID = Convert.ToInt32(getAntennaID2);
+                            //                        }
 
-            //                                            MySqlDatabase db3 = new();
-            //                                            string selQuery3 = "SELECT * FROM antenna_tbl a INNER JOIN antenna_info_tbl b ON a.AntennaID = b.AntennaID WHERE a.ReaderID = @ReaderID AND b.AntennaID = @AntennaID AND b.AntennaStatus= 'Disabled'";
-            //                                            cmd = new MySqlCommand(selQuery3, db3.Con);
-            //                                            cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
-            //                                            cmd.Parameters.AddWithValue("@AntennaID", AntennaID);
+                            //                        MySqlDatabase db3 = new();
+                            //                        string selQuery3 = "SELECT * FROM antenna_tbl a INNER JOIN antenna_info_tbl b ON a.AntennaID = b.AntennaID WHERE a.ReaderID = @ReaderID AND b.AntennaID = @AntennaID AND b.AntennaStatus= 'Disabled'";
+                            //                        cmd = new MySqlCommand(selQuery3, db3.Con);
+                            //                        cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                            //                        cmd.Parameters.AddWithValue("@AntennaID", AntennaID);
 
-            //                                            if (db3.Con.State != ConnectionState.Open)
-            //                                            {
-            //                                                db3.Con.Open();
-            //                                            }
+                            //                        if (db3.Con.State != ConnectionState.Open)
+                            //                        {
+                            //                            db3.Con.Open();
+                            //                        }
 
-            //                                            MySqlDataReader dataReader3 = cmd.ExecuteReader();
+                            //                        MySqlDataReader dataReader3 = cmd.ExecuteReader();
 
-            //                                            if (dataReader3.HasRows)
-            //                                            {
-            //                                                dataReader3.Close();
-            //                                                var getAntennaInfoID = cmd.ExecuteScalar();
-            //                                                if (getAntennaInfoID != null)
-            //                                                {
-            //                                                    AntennaInfoID = Convert.ToInt32(getAntennaInfoID);
-            //                                                }
+                            //                        if (dataReader3.HasRows)
+                            //                        {
+                            //                            dataReader3.Close();
+                            //                            var getAntennaInfoID = cmd.ExecuteScalar();
+                            //                            if (getAntennaInfoID != null)
+                            //                            {
+                            //                                AntennaInfoID = Convert.ToInt32(getAntennaInfoID);
+                            //                            }
 
-            //                                                MySqlDatabase db4 = new();
-            //                                                string updQuery = "UPDATE antenna_info_tbl SET AntennaStatus = 'Enabled' WHERE AntennaInfoID = @AntennaInfoID";
+                            //                            MySqlDatabase db4 = new();
+                            //                            string updQuery = "UPDATE antenna_info_tbl SET AntennaStatus = 'Enabled' WHERE AntennaInfoID = @AntennaInfoID";
 
-            //                                                cmd = new MySqlCommand(updQuery, db4.Con);
-            //                                                cmd.Parameters.AddWithValue("@AntennaInfoID", AntennaInfoID);
-            //                                                cmd.Parameters.Clear();
-            //                                                cmd.ExecuteNonQuery();
-            //                                            }
-            //                                            else
-            //                                            {
-            //                                                dataReader3.Close();
-            //                                            }
-            //                                            db3.Con.Close();
-            //                                        }
-            //                                    }
+                            //                            cmd = new MySqlCommand(updQuery, db4.Con);
+                            //                            cmd.Parameters.AddWithValue("@AntennaInfoID", AntennaInfoID);
+                            //                            cmd.Parameters.Clear();
+                            //                            cmd.ExecuteNonQuery();
+                            //                        }
+                            //                        else
+                            //                        {
+                            //                            dataReader3.Close();
+                            //                        }
+                            //                        db3.Con.Close();
+                            //                    }
+                            //                }
 
-            //                                    Console.WriteLine("\nDisabling all antennas is not allowed.");
-            //                                    Console.WriteLine("All antennas have been reset and are now available.");
-            //                                }
-            //                                else
-            //                                {
-            //                                    ushort[] antList = new ushort[statusList.Count];
-            //                                    for (int i = 0; i < statusList.Count; i++)
-            //                                    {
-            //                                        antList[i] = Convert.ToUInt16(statusList[i].ToString());
-            //                                    }
+                            //                Console.WriteLine("\nDisabling all antennas is not allowed.");
+                            //                Console.WriteLine("All antennas have been reset and are now available.");
+                            //            }
+                            //            else
+                            //            {
+                            //                ushort[] antList = new ushort[statusList.Count];
+                            //                for (int i = 0; i < statusList.Count; i++)
+                            //                {
+                            //                    antList[i] = Convert.ToUInt16(statusList[i].ToString());
+                            //                }
 
-            //                                    if (null == antennaInfo)
-            //                                    {
-            //                                        antennaInfo = new Symbol.RFID3.AntennaInfo(antList);
-            //                                    }
-            //                                    else
-            //                                    {
-            //                                        antennaInfo.AntennaID = antList;
-            //                                    }
+                            //                if (null == antennaInfo)
+                            //                {
+                            //                    antennaInfo = new Symbol.RFID3.AntennaInfo(antList);
+                            //                }
+                            //                else
+                            //                {
+                            //                    antennaInfo.AntennaID = antList;
+                            //                }
 
-            //                                    Console.WriteLine("Antenna Port :  {0} ", antenna);
-            //                                    Console.WriteLine("Status       : OFF\n");
-            //                                    Console.WriteLine("Set Antenna Successfully\n");
+                            //                Console.WriteLine("Antenna Port :  {0} ", antenna);
+                            //                Console.WriteLine("Status       : OFF\n");
+                            //                Console.WriteLine("Set Antenna Successfully\n");
 
-            //                                    MySqlDatabase db3 = new();
-            //                                    string selQuery2 = @"SpAntennaInfo";
-            //                                    cmd = new MySqlCommand(selQuery2, db3.Con);
-            //                                    cmd.CommandType = CommandType.StoredProcedure;
+                            //                MySqlDatabase db3 = new();
+                            //                string selQuery2 = @"SpAntennaInfo";
+                            //                cmd = new MySqlCommand(selQuery2, db3.Con);
+                            //                cmd.CommandType = CommandType.StoredProcedure;
 
-            //                                    cmd.Parameters.AddWithValue("@aID", AntennaID);
-            //                                    cmd.Parameters.AddWithValue("@antStatus", "Disabled");
+                            //                cmd.Parameters.AddWithValue("@aID", AntennaID);
+                            //                cmd.Parameters.AddWithValue("@antStatus", "Disabled");
 
-            //                                    if (db3.Con.State != ConnectionState.Open)
-            //                                    {
-            //                                        db3.Con.Open();
-            //                                    }
+                            //                if (db3.Con.State != ConnectionState.Open)
+                            //                {
+                            //                    db3.Con.Open();
+                            //                }
 
-            //                                    cmd.ExecuteScalar();
+                            //                cmd.ExecuteScalar();
 
-            //                                    db3.Con.Close();
-            //                                }
-            //                            }
-            //                            else
-            //                            {
-            //                                Console.WriteLine($"Antenna Port {antenna} is already OFF");
-            //                            }
-            //                        }
-            //                        else if (antennaStatus == 1)
-            //                        {
-            //                            if (statusList.Contains(antenna))
-            //                            {
-            //                                Console.WriteLine($"Antenna Port {antenna} is already ON");
-            //                            }
-            //                            else
-            //                            {
-            //                                statusList.Add(antenna);
-            //                                statusList.Sort();
+                            //                db3.Con.Close();
+                            //            }
+                            //        }
+                            //        else
+                            //        {
+                            //            Console.WriteLine($"Antenna Port {antenna} is already OFF");
+                            //        }
+                            //    }
+                            //    else if (antennaStatus == 1)
+                            //    {
+                            //        if (statusList.Contains(antenna))
+                            //        {
+                            //            Console.WriteLine($"Antenna Port {antenna} is already ON");
+                            //        }
+                            //        else
+                            //        {
+                            //            statusList.Add(antenna);
+                            //            statusList.Sort();
 
-            //                                MySqlDatabase db4 = new();
-            //                                string selQuery = @"SpAntennaInfo";
-            //                                cmd = new MySqlCommand(selQuery, db4.Con);
-            //                                cmd.CommandType = CommandType.StoredProcedure;
+                            //            MySqlDatabase db4 = new();
+                            //            string selQuery = @"SpAntennaInfo";
+                            //            cmd = new MySqlCommand(selQuery, db4.Con);
+                            //            cmd.CommandType = CommandType.StoredProcedure;
 
-            //                                cmd.Parameters.AddWithValue("@aID", AntennaID);
-            //                                cmd.Parameters.AddWithValue("@antStatus", "Enabled");
+                            //            cmd.Parameters.AddWithValue("@aID", AntennaID);
+                            //            cmd.Parameters.AddWithValue("@antStatus", "Enabled");
 
-            //                                if (db4.Con.State != ConnectionState.Open)
-            //                                {
-            //                                    db4.Con.Open();
-            //                                }
+                            //            if (db4.Con.State != ConnectionState.Open)
+                            //            {
+                            //                db4.Con.Open();
+                            //            }
 
-            //                                cmd.ExecuteScalar();
+                            //            cmd.ExecuteScalar();
 
-            //                                db4.Con.Close();
+                            //            db4.Con.Close();
 
-            //                                Console.WriteLine("Antenna Port :  {0} ", antenna);
-            //                                Console.WriteLine("Status       : ON\n");
-            //                                Console.WriteLine("Set Antenna Successfully\n");
-            //                            }
-            //                        }
-            //                        else
-            //                        {
-            //                            Console.WriteLine("Enter a valid integer in the range 0-1");
-            //                            break;
-            //                        }
-            //                    }
-            //                    catch (Exception)
-            //                    {
-            //                        Console.WriteLine("Zebra Reader Setting Error");
-            //                    }
-            //                    break;
-            //                case 2:
-            //                    DisplayAntennaStatus();
-            //                    break;
-            //                case 3:
-            //                    SetEnableAllAntenna(reader);
-            //                    break;
-            //                case 4:
-            //                    isWorking = false;
-            //                    break;
-            //                default:
-            //                    Console.WriteLine("Enter a valid integer in the range 1-4");
-            //                    break;
-            //            }
-            //        }
-            //        catch (FormatException)
-            //        {
-            //            Console.WriteLine("Invalid Input Format");
-            //        }
-            //        catch (IOException)
-            //        {
-            //            Console.WriteLine("Enter a valid Integer in the range 1-4");
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            Console.WriteLine(ex.Message);
-            //        }
-            //    }
+                            //            Console.WriteLine("Antenna Port :  {0} ", antenna);
+                            //            Console.WriteLine("Status       : ON\n");
+                            //            Console.WriteLine("Set Antenna Successfully\n");
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        Console.WriteLine("Enter a valid integer in the range 0-1");
+                            //        break;
+                            //    }
+                            //}
+                            //catch (Exception)
+                            //{
+                            //    Console.WriteLine("Zebra Reader Setting Error");
+                            //}
+                            break;
+                        case 2:
+                            DisplayAntennaStatus(reader);
+                            break;
+                        case 3:
+                            SetEnableAllAntenna(reader);
+                            break;
+                        case 4:
+                            isWorking = false;
+                            break;
+                        default:
+                            Console.WriteLine("Enter a valid integer in the range 1-4");
+                            break;
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid Input Format");
+                }
+                catch (IOException)
+                {
+                    Console.WriteLine("Enter a valid Integer in the range 1-4");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
         }
-        private void DisplayAntennaStatus()
+        private void DisplayAntennaStatus(HighLevelInterface reader)
         {
+            for (uint i = 0; i < reader.AntennaList.Count; i++)
+            {
+                Console.WriteLine(reader.AntennaList[Convert.ToInt32(i)].AntennaStatus.state);
+            }
+
+
             MySqlDatabase db = new();
 
             string selQuery = "SELECT a.Antenna, b.AntennaStatus FROM antenna_tbl a INNER JOIN antenna_info_tbl b ON a.AntennaID = b.AntennaID WHERE a.ReaderID = @ReaderID ORDER BY a.Antenna ASC";
@@ -987,7 +996,7 @@ namespace RfidReader.Reader
                     string status = dataReader.GetString("AntennaStatus");
 
                     Console.WriteLine($"Antenna                     : {antenna}");
-                    if (status.Equals("False")) Console.WriteLine("Antenna Status:             : OFF\n");
+                    if (status.Equals(AntennaPortState.DISABLED)) Console.WriteLine("Antenna Status:             : OFF\n");
                     else Console.WriteLine("Antenna Status:             : ON\n");
                 }
                 db.Con.Close();
@@ -1321,7 +1330,7 @@ namespace RfidReader.Reader
                 {
                     uniqueTags.Clear();
                     totalTags = 0;
-                    reader.StartOperation(CSLibrary.Constants.Operation.TAG_RANGING, false);
+                    reader.StartOperation(Operation.TAG_RANGING, false);
                 }
 
                 Console.ReadKey();
@@ -1345,6 +1354,11 @@ namespace RfidReader.Reader
         }
         private void Default(HighLevelInterface reader)
         {
+            AntennaConfig = new AntennaList();
+
+            AntennaPortStatus antennaPortStatus = new AntennaPortStatus();
+            AntennaPortConfig antennaPortConfig = new AntennaPortConfig();
+
             try
             {
                 //Antenna
@@ -1361,41 +1375,16 @@ namespace RfidReader.Reader
                     string insQuery1 = "INSERT INTO antenna_tbl (ReaderID, Antenna, TransmitPower) VALUES (@rID, @ant, @power)";
                     cmd = new MySqlCommand(insQuery1, db1.Con);
 
-                    CSLibrary.Structures.AntennaPortStatus t_AntennaPortStatus = new CSLibrary.Structures.AntennaPortStatus();
-                    CSLibrary.Structures.AntennaPortConfig t_AntennaPortConfig = new CSLibrary.Structures.AntennaPortConfig();
-
-                    for (uint i = 0; i < 1; i++)
+                    for (uint i = 0; i < reader.AntennaList.Count; i++)
                     {
-                        reader.GetAntennaPortConfiguration(i, ref t_AntennaPortConfig);
-                        // Get Antenna Port Status
-                        t_AntennaPortConfig.powerLevel = 300;
-                        t_AntennaPortConfig.dwellTime = 1000;       // Dwell Time
-                        reader.SetAntennaPortConfiguration(i, t_AntennaPortConfig);                // Set Antenna Configuration
-
-                        //reader.GetAntennaPortStatus(i, t_AntennaPortStatus);
-                        //t_AntennaPortStatus.profile = rdr_info_data[idxList].antPort_Pofile[i];            // Set Current Link Profile
-                        //t_AntennaPortStatus.enableLocalProfile = true;                                          // Enable Current Link Profile
-                        //t_AntennaPortStatus.inv_algo = rdr_info_data[idxList].antPort_QAlg[i];             // Set Inventory Algorithm
-                        //t_AntennaPortStatus.enableLocalInv = true;                                              // Enable Local Inventory
-                        //t_AntennaPortStatus.startQ = (uint)rdr_info_data[idxList].antPort_startQValue[i];      // Set Start Q Value
-
-                        //// if (IsFreqHoppingRegion[(int)rdr_info_data[idxList].regionCode] == 0)
-                        //if (reader.IsFixedChannelOnly)
-                        //{
-                        //    t_AntennaPortStatus.enableLocalFreq = true;
-                        //    t_AntennaPortStatus.freqChn = rdr_info_data[idxList].freq_channel[i];          // Set Fixed Frequency Channel for each port
-                        //}
-                        //else
-                        //    t_AntennaPortStatus.enableLocalFreq = false;
-
-                        reader.SetAntennaPortStatus(i, t_AntennaPortStatus);
-
-                        reader.SetAntennaPortState(i, AntennaPortState.ENABLED);
+                        reader.GetAntennaPortConfiguration(i, ref antennaPortConfig);
+                        antennaPortConfig.powerLevel = 100;
+                        reader.SetAntennaPortConfiguration(i, antennaPortConfig);
 
                         cmd.Parameters.Clear();
                         cmd.Parameters.AddWithValue("@rID", ReaderID);
                         cmd.Parameters.AddWithValue("@ant", i + 1);
-                        cmd.Parameters.AddWithValue("@power", t_AntennaPortConfig.powerLevel);
+                        cmd.Parameters.AddWithValue("@power", antennaPortConfig.powerLevel);
 
                         if (db1.Con.State != ConnectionState.Open)
                         {
@@ -1405,6 +1394,62 @@ namespace RfidReader.Reader
                         db1.Con.Close();
                     }
                 }
+
+                //Reader Settings
+
+                //Enabling Antenna
+                MySqlDatabase db6 = new();
+
+                for (uint i = 0; i < reader.AntennaList.Count; i++)
+                {
+                    string selQuery6 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @Antenna";
+                    cmd = new MySqlCommand(selQuery6, db6.Con);
+                    cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                    cmd.Parameters.AddWithValue("@Antenna", i + 1);
+
+                    if (db6.Con.State != ConnectionState.Open)
+                    {
+                        db6.Con.Open();
+                    }
+
+                    MySqlDataReader dataReader6 = cmd.ExecuteReader();
+
+                    if (dataReader6.HasRows)
+                    {
+                        dataReader6.Close();
+                        var res = cmd.ExecuteScalar();
+                        if (res != null)
+                        {
+                            AntennaID = Convert.ToInt32(res);
+                        }
+
+                        reader.GetAntennaPortStatus(i, antennaPortStatus);
+
+                        reader.SetAntennaPortStatus(i, antennaPortStatus);
+
+                        reader.SetAntennaPortState(i, AntennaPortState.ENABLED);
+
+                        string insQuery6 = "INSERT INTO antenna_info_tbl (AntennaID, AntennaStatus) VALUES (@aID, @antStatus)";
+                        cmd = new MySqlCommand(insQuery6, db6.Con);
+
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@aID", AntennaID);
+                        cmd.Parameters.AddWithValue("@antStatus", AntennaPortState.ENABLED.ToString());
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        dataReader6.Close();
+                    }
+
+                    db6.Con.Close();
+                }
+
+                //GPI
+
+                //GPO
+
             }
             catch (Exception ex)
             {
@@ -1413,16 +1458,103 @@ namespace RfidReader.Reader
         }
         private void LoadDB(HighLevelInterface reader)
         {
+            AntennaConfig = new AntennaList();
+
+            AntennaPortStatus antennaPortStatus = new AntennaPortStatus();
+            AntennaPortConfig antennaPortConfig = new AntennaPortConfig();
+
             try
             {
                 //Antenna
+                MySqlDatabase db1 = new();
 
-                CSLibrary.Structures.AntennaPortStatus t_AntennaPortStatus = new CSLibrary.Structures.AntennaPortStatus();
-                CSLibrary.Structures.AntennaPortConfig t_AntennaPortConfig = new CSLibrary.Structures.AntennaPortConfig();
+                string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID ORDER BY Antenna ASC";
+                cmd = new MySqlCommand(selQuery1, db1.Con);
+                cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                MySqlDataReader dataReader1 = cmd.ExecuteReader();
+
+                if (dataReader1.HasRows)
+                {
+                    while (dataReader1.Read())
+                    {
+                        int antennaIndex = dataReader1.GetInt32("Antenna") - 1;
+
+                        if (antennaIndex < reader.AntennaList.Count)
+                        {
+                            antennaPortConfig.powerLevel = Convert.ToUInt32(dataReader1.GetInt32("TransmitPower"));
+
+                            reader.GetAntennaPortConfiguration(Convert.ToUInt32(antennaIndex), ref antennaPortConfig);
+
+                            reader.SetAntennaPortConfiguration(Convert.ToUInt32(antennaIndex), antennaPortConfig);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Antenna index {0} is out of range", antennaIndex);
+                        }
+                    }
+                    db1.Con.Close();
+                }
 
                 //Reader Settings
+
                 //Enabling Antenna
+
+                MySqlDatabase db3 = new();
+
+                for (int c = 0; c < reader.AntennaList.Count; c++)
+                {
+                    string selQuery3 = "SELECT a.Antenna, b.AntennaStatus FROM antenna_tbl a INNER JOIN antenna_info_tbl b ON a.AntennaID = b.AntennaID WHERE a.ReaderID = @ReaderID AND a.Antenna = @Antenna ORDER BY a.Antenna ASC";
+                    cmd = new MySqlCommand(selQuery3, db3.Con);
+                    cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                    cmd.Parameters.AddWithValue("@Antenna", (c + 1));
+
+                    if (db3.Con.State != ConnectionState.Open)
+                    {
+                        db3.Con.Open();
+                    }
+
+                    MySqlDataReader dataReader3 = cmd.ExecuteReader();
+
+                    if (dataReader3.HasRows)
+                    {
+                        while (dataReader3.Read())
+                        {
+                            int antennaIndex = dataReader3.GetInt32("Antenna") - 1;
+                            string antennaStatus = dataReader3.GetString("AntennaStatus");
+
+                            if (antennaStatus == "DISABLED" || antennaStatus == "UNKNOWN")
+                            {
+                                //reader.AntennaList[Convert.ToInt32(c)].AntennaStatus.state = AntennaPortState.DISABLED;
+                                antennaPortStatus.state = AntennaPortState.DISABLED;
+                            }
+
+                            else if (antennaStatus == "ENABLED")
+                            {
+                                //reader.AntennaList[Convert.ToInt32(c)].AntennaStatus.state = AntennaPortState.ENABLED;
+                                antennaPortStatus.state = AntennaPortState.ENABLED;
+                            }
+
+                            reader.GetAntennaPortStatus(Convert.ToUInt32(antennaIndex), antennaPortStatus);
+
+                            reader.SetAntennaPortStatus(Convert.ToUInt32(antennaIndex), antennaPortStatus);
+
+                            reader.SetAntennaPortConfiguration(Convert.ToUInt32(antennaIndex), antennaPortConfig);
+
+                            //if (antennaIndex < reader.AntennaList.Count)
+                            //{
+                            //    reader.GetAntennaPortStatus(Convert.ToUInt32(antennaIndex), antennaPortStatus);
+
+                            //    reader.SetAntennaPortStatus(Convert.ToUInt32(antennaIndex), antennaPortStatus);
+
+                            //    reader.SetAntennaPortConfiguration(Convert.ToUInt32(antennaIndex), antennaPortConfig);
+                            //}
+                        }
+                        db3.Con.Close();
+                    }
+                }
+
                 //GPI
+
                 //GPO
             }
             catch (Exception ex)

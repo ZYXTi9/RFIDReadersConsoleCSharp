@@ -2776,14 +2776,14 @@ namespace RfidReader.Reader
         }
         private void LoadDB(RFIDReader reader)
         {
+            Antennas.RFMode rfMode;
+            Antennas.SingulationControl singularControl;
+            Antennas.Config antennaConfig;
+
+            ushort[] antID = reader.Config.Antennas.AvailableAntennas;
+
             try
             {
-                Antennas.RFMode rfMode;
-                Antennas.SingulationControl singularControl;
-                Antennas.Config antennaConfig;
-
-                ushort[] antID = reader.Config.Antennas.AvailableAntennas;
-
                 //Antenna Power
                 MySqlDatabase db1 = new();
 
