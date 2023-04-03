@@ -491,15 +491,13 @@ namespace RfidReader.Reader
                 {
                     while (dataReader1.Read())
                     {
-                        string searchMode = dataReader1.GetString("SearchMode");
-                        string slFlag = dataReader1.GetString("SLFlag");
-                        int session = dataReader1.GetInt32("Session");
-                        int tagPopulation = dataReader1.GetInt32("TagPopulation");
+                        string selected = dataReader1.GetString("SLFlag");
+                        string session = dataReader1.GetString("Session");
+                        string target = dataReader1.GetString("InventoryState");
 
-                        Console.WriteLine("Search mode                                  : {0}", searchMode);
-                        Console.WriteLine("Selected                                     : {0}", slFlag);
-                        Console.WriteLine("Session                                      : {0} ", session);
-                        Console.WriteLine("Tag Population                               : {0} \n", tagPopulation);
+                        Console.WriteLine("Selected                                     : {0}", selected);
+                        Console.WriteLine("Session                                      : {0}", session);
+                        Console.WriteLine("Target                                       : {0} ", target);
                     }
                     db1.Con.Close();
                 }
@@ -1082,7 +1080,7 @@ namespace RfidReader.Reader
 
                             break;
                         case 2:
-                            DisplayGPI();
+                            DisplayGPI(reader);
                             break;
                         case 3:
                             isWorking = false;
@@ -1102,8 +1100,34 @@ namespace RfidReader.Reader
                 }
             }
         }
-        private void DisplayGPI()
+        private void DisplayGPI(HighLevelInterface reader)
         {
+
+            Console.WriteLine(reader.GetGPI1Status(ref status));
+            Console.WriteLine("GPI1 Status : " + (status ? "On" : "Off"));
+
+            Console.WriteLine(reader.GetGPI1Status(ref status));
+            Console.WriteLine("GPI2 Status : " + (status ? "On" : "Off"));
+
+            reader.GetGPI2Status(ref status);
+            Console.WriteLine("GPI3 Status : " + (status ? "On" : "Off"));
+
+            reader.GetGPI3Status(ref status);
+            Console.WriteLine("GPI4 Status : " + (status ? "On" : "Off"));
+
+
+            reader.GetGPO0Status(ref status);
+            Console.WriteLine("GPO1 Status : " + (status ? "On" : "Off"));
+
+            reader.GetGPO1Status(ref status);
+            Console.WriteLine("GPO2 Status : " + (status ? "On" : "Off"));
+
+            reader.GetGPO2Status(ref status);
+            Console.WriteLine("GPO3 Status : " + (status ? "On" : "Off"));
+
+            reader.GetGPO3Status(ref status);
+            Console.WriteLine("GPO4 Status : " + (status ? "On" : "Off"));
+
             try
             {
                 MySqlDatabase db = new();
@@ -1196,7 +1220,10 @@ namespace RfidReader.Reader
                         string gpoMode = dataReader.GetString("GPOMode");
 
                         Console.WriteLine("GPO Port                    : {0} ", gpoPort);
-                        Console.WriteLine("GPO Mode                    : {0} \n", gpoMode);
+
+                        if (gpoMode.Equals("True")) Console.WriteLine("GPO Mode                    : ON \n");
+                        else Console.WriteLine("GPO Mode                    : OFF \n");
+
                     }
                     db.Con.Close();
                 }
@@ -1402,7 +1429,53 @@ namespace RfidReader.Reader
                     }
                 }
 
-                //Reader Settings
+                //Inventory Config
+                MySqlDatabase db4 = new();
+
+                for (int i = 0; i < reader.AntennaList.Count; i++)
+                {
+                    string selQuery4 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @Antenna";
+                    cmd = new MySqlCommand(selQuery4, db4.Con);
+                    cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                    cmd.Parameters.AddWithValue("@Antenna", i + 1);
+
+                    if (db4.Con.State != ConnectionState.Open)
+                    {
+                        db4.Con.Open();
+                    }
+
+                    MySqlDataReader dataReader4 = cmd.ExecuteReader();
+
+                    if (dataReader4.HasRows)
+                    {
+                        dataReader4.Close();
+                        var res = cmd.ExecuteScalar();
+                        if (res != null)
+                        {
+                            AntennaID = Convert.ToInt32(res);
+                        }
+
+                        tagGroup.selected = Selected.ALL;
+                        tagGroup.session = Session.S0;
+                        tagGroup.target = SessionTarget.A;
+
+                        string insQuery4 = "INSERT INTO singulation_tbl (AntennaID, Session, InventoryState, SLFlag) VALUES (@aID, @session, @invState, @slFlag)";
+                        cmd = new MySqlCommand(insQuery4, db4.Con);
+
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@aID", AntennaID);
+                        cmd.Parameters.AddWithValue("@session", tagGroup.session.ToString());
+                        cmd.Parameters.AddWithValue("@invState", tagGroup.target.ToString());
+                        cmd.Parameters.AddWithValue("@slFlag", tagGroup.selected.ToString());
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        dataReader4.Close();
+                    }
+                    db4.Con.Close();
+                }
 
                 //Enabling Antenna
                 MySqlDatabase db6 = new();
@@ -1452,9 +1525,85 @@ namespace RfidReader.Reader
                 }
 
                 //GPI
+                MySqlDatabase db7 = new();
+
+                string selQuery7 = "SELECT * FROM gpi_tbl WHERE ReaderID = @ReaderID";
+                cmd = new MySqlCommand(selQuery7, db7.Con);
+                cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                MySqlDataReader dataReader7 = cmd.ExecuteReader();
+
+                if (!dataReader7.HasRows)
+                {
+                    dataReader7.Close();
+                    string insQuery7 = "INSERT INTO gpi_tbl (ReaderID, GPIPort, GPIStatus) VALUES (@rID, @gpiPortNo, @gpiStats)";
+                    cmd = new MySqlCommand(insQuery7, db7.Con);
+
+                    bool status = false;
+
+                    //reader.GetGPI0Status(ref status);
+                    //reader.GetGPI1Status(ref status);
+                    //reader.GetGPI2Status(ref status);
+                    //reader.GetGPI3Status(ref status);
+
+                    reader.GetGPI0Status(ref status);
+                    reader.GetGPI1Status(ref status);
+                    reader.GetGPI2Status(ref status);
+                    reader.GetGPI3Status(ref status);
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@rID", ReaderID);
+                        cmd.Parameters.AddWithValue("@gpiPortNo", (i + 1));
+                        cmd.Parameters.AddWithValue("@gpiStats", status.ToString());
+
+                        if (db7.Con.State != ConnectionState.Open)
+                        {
+                            db7.Con.Open();
+                        }
+                        cmd.ExecuteNonQuery();
+                        db7.Con.Close();
+                    }
+                }
 
                 //GPO
+                MySqlDatabase db8 = new();
 
+                string selQuery8 = "SELECT * FROM gpo_tbl WHERE ReaderID = @ReaderID";
+                cmd = new MySqlCommand(selQuery8, db8.Con);
+                cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                MySqlDataReader dataReader8 = cmd.ExecuteReader();
+
+                if (!dataReader8.HasRows)
+                {
+                    dataReader8.Close();
+                    string insQuery8 = "INSERT INTO gpo_tbl (ReaderID, GPOPort, GPOMode) VALUES (@rID, @gpoPortNo, @gpoStats)";
+                    cmd = new MySqlCommand(insQuery8, db8.Con);
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        bool status = false;
+
+                        //reader.GetGPO0Status(ref status);
+                        //reader.GetGPO1Status(ref status);
+                        //reader.GetGPO2Status(ref status);
+                        //reader.GetGPO3Status(ref status);
+
+                        reader.SetGPO0Status(status);
+                        reader.SetGPO1Status(status);
+                        reader.SetGPO2Status(status);
+                        reader.SetGPO3Status(status);
+
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@rID", ReaderID);
+                        cmd.Parameters.AddWithValue("@gpoPortNo", (i + 1));
+                        cmd.Parameters.AddWithValue("@gpoStats", status.ToString());
+
+                        db8.OpenConnection();
+                        cmd.ExecuteNonQuery();
+                        db8.Con.Close();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1495,27 +1644,32 @@ namespace RfidReader.Reader
                 //Inventory Config
                 MySqlDatabase db2 = new();
 
-                string selQuery2 = "SELECT * FROM reader_settings_tbl WHERE ReaderID = @ReaderID";
+                string selQuery2 = "SELECT * FROM antenna_tbl a INNER JOIN singulation_tbl b ON a.AntennaID = b.AntennaID WHERE a.ReaderID = @ReaderID AND a.Antenna = @Antenna";
                 cmd = new MySqlCommand(selQuery2, db2.Con);
                 cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                cmd.Parameters.AddWithValue("@Antenna", 1);
                 MySqlDataReader dataReader2 = cmd.ExecuteReader();
 
                 if (dataReader2.HasRows)
                 {
                     while (dataReader2.Read())
                     {
-                        string selected = dataReader2.GetString("SLFlag");
+                        //string selected = dataReader2.GetString("SLFlag");
 
-                        if (selected == "ALL") tagGroup.selected = Selected.ALL;
-                        else if (selected == "Asserted") tagGroup.selected = Selected.ASSERTED;
-                        else if (selected == "Deasserted") tagGroup.selected = Selected.DEASSERTED;
+                        //if (selected == "ALL") tagGroup.selected = Selected.ALL;
+                        //else if (selected == "Asserted") tagGroup.selected = Selected.ASSERTED;
+                        //else if (selected == "Deasserted") tagGroup.selected = Selected.DEASSERTED;
+                        string selected = dataReader2.GetString("SLFlag");
+                        tagGroup.selected = selected == "ALL" ? Selected.ALL :
+                                            selected == "Asserted" ? Selected.ASSERTED :
+                                            selected == "Deasserted" ? Selected.DEASSERTED :
+                                            default(Selected);
 
                         tagGroup.session = (Session)System.Enum.Parse(typeof(Session), dataReader2.GetString("Session"));
-
+                        tagGroup.target = (SessionTarget)System.Enum.Parse(typeof(SessionTarget), dataReader2.GetString("InventoryState"));
                     }
                     db2.Con.Close();
                 }
-
 
                 //Enabling Antenna
 
@@ -1562,8 +1716,86 @@ namespace RfidReader.Reader
                 }
 
                 //GPI
+                MySqlDatabase db7 = new();
+
+                string selQuery7 = "SELECT * FROM gpi_tbl WHERE ReaderID = @ReaderID ORDER BY GPIPort ASC";
+                cmd = new MySqlCommand(selQuery7, db7.Con);
+                cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                MySqlDataReader dataReader7 = cmd.ExecuteReader();
+
+                bool status;
+
+                if (dataReader7.HasRows)
+                {
+                    while (dataReader7.Read())
+                    {
+                        int gpiIndex = dataReader7.GetInt32("GPIPort");
+
+                        if (gpiIndex == 0)
+                        {
+                            status = Convert.ToBoolean(dataReader7.GetString("GPIStatus"));
+                            reader.GetGPI0Status(ref status);
+                        }
+                        else if (gpiIndex == 1)
+                        {
+                            status = Convert.ToBoolean(dataReader7.GetString("GPIStatus"));
+                            reader.GetGPI1Status(ref status);
+                        }
+                        else if (gpiIndex == 2)
+                        {
+                            status = Convert.ToBoolean(dataReader7.GetString("GPIStatus"));
+                            reader.GetGPI2Status(ref status);
+                        }
+                        else
+                        {
+                            status = Convert.ToBoolean(dataReader7.GetString("GPIStatus"));
+                            reader.GetGPI3Status(ref status);
+                        }
+                    }
+                    db7.Con.Close();
+                }
 
                 //GPO
+                MySqlDatabase db8 = new();
+
+                string selQuery8 = "SELECT * FROM gpo_tbl WHERE ReaderID = @ReaderID ORDER BY GPOPort ASC";
+                cmd = new MySqlCommand(selQuery8, db8.Con);
+                cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                MySqlDataReader dataReader8 = cmd.ExecuteReader();
+
+                if (dataReader8.HasRows)
+                {
+                    while (dataReader8.Read())
+                    {
+                        int gpoIndex = dataReader8.GetInt32("GPOPort");
+
+                        if (gpoIndex == 0)
+                        {
+                            status = Convert.ToBoolean(dataReader8.GetString("GPOMode"));
+                            //reader.GetGPO0Status(ref status);
+                            reader.SetGPO0Status(status);
+                        }
+                        else if (gpoIndex == 1)
+                        {
+                            status = Convert.ToBoolean(dataReader8.GetString("GPOMode"));
+                            //reader.GetGPO1Status(ref status);
+                            reader.SetGPO1Status(status);
+                        }
+                        else if (gpoIndex == 2)
+                        {
+                            status = Convert.ToBoolean(dataReader8.GetString("GPOMode"));
+                            //reader.GetGPO2Status(ref status);
+                            reader.SetGPO2Status(status);
+                        }
+                        else
+                        {
+                            status = Convert.ToBoolean(dataReader8.GetString("GPOMode"));
+                            //reader.GetGPO3Status(ref status);
+                            reader.SetGPO3Status(status);
+                        }
+                    }
+                    db8.Con.Close();
+                }
             }
             catch (Exception ex)
             {

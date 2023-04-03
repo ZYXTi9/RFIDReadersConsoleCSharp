@@ -1963,7 +1963,7 @@ namespace RfidReader.Reader
                                 ConsoleKeyInfo choice = Console.ReadKey();
                                 if (choice.Key == ConsoleKey.Y)
                                 {
-                                    Console.WriteLine("\n\nState Aware Menu");
+                                    Console.WriteLine("\n\nInventory State Menu");
                                     Console.WriteLine("1. STATE A");
                                     Console.WriteLine("2. STATE B");
                                     Console.WriteLine("3. AB FLIP");
@@ -2759,12 +2759,12 @@ namespace RfidReader.Reader
                         cmd.Parameters.AddWithValue("@gpoPortNo", (i + 1));
                         cmd.Parameters.AddWithValue("@gpoStats", GPOs.GPO_PORT_STATE.FALSE.ToString());
 
-                        if (db5.Con.State != ConnectionState.Open)
+                        if (db8.Con.State != ConnectionState.Open)
                         {
-                            db5.Con.Open();
+                            db8.Con.Open();
                         }
                         cmd.ExecuteNonQuery();
-                        db5.Con.Close();
+                        db8.Con.Close();
                     }
                 }
             }
