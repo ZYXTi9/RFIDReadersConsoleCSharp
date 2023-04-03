@@ -2104,7 +2104,6 @@ namespace RfidReader.Reader
                         string slFlag = dataReader.GetString("SLFlag");
                         string invState = dataReader.GetString("InventoryState");
 
-                        Console.WriteLine("GASSI");
                         Console.WriteLine("Session                     : {0} ", session);
                         Console.WriteLine("Tag Population              : {0} ", tagPopulation);
                         Console.WriteLine("Tag Transmit                : {0} ", tagTransmit);

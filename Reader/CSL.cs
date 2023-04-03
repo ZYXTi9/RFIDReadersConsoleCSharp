@@ -72,10 +72,12 @@ namespace RfidReader.Reader
         public static reader_info[] rdr_info_data = new reader_info[100];
 
         AntennaList AntennaConfig;
+        private TagGroup tagGroup = new TagGroup();
+
         Result ret;
+
         public static Hashtable uniqueTags = new Hashtable();
         public static int totalTags;
-
         public CSL()
         {
             totalTags = 0;
@@ -417,7 +419,7 @@ namespace RfidReader.Reader
 
                 Console.WriteLine("----Command Menu----");
                 Console.WriteLine("1. Reader Info");
-                Console.WriteLine("2. Reader Settings");
+                Console.WriteLine("2. Inventory Config");
                 Console.WriteLine("3. Antenna Settings");
                 Console.WriteLine("4. GPIO Configuration");
                 Console.WriteLine("5. Back\n");
@@ -432,7 +434,7 @@ namespace RfidReader.Reader
                             ReaderInfo(reader);
                             break;
                         case 2:
-                            ReaderSettings(reader);
+                            InvConfig(reader);
                             break;
                         case 3:
                             AntennaSettings(reader);
@@ -475,12 +477,12 @@ namespace RfidReader.Reader
 
             try
             {
-                Console.WriteLine("Current Reader Settings");
+                Console.WriteLine("Current Inventory Config");
                 Console.WriteLine("---------------");
 
                 MySqlDatabase db1 = new();
 
-                string selQuery1 = "SELECT * FROM reader_settings_tbl WHERE ReaderID = @ReaderID";
+                string selQuery1 = "SELECT * FROM antenna_tbl a INNER JOIN singulation_tbl b ON a.AntennaID = b.AntennaID WHERE a.ReaderID = @ReaderID AND a.Antenna = 1";
                 cmd = new MySqlCommand(selQuery1, db1.Con);
                 cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
                 MySqlDataReader dataReader1 = cmd.ExecuteReader();
@@ -489,13 +491,13 @@ namespace RfidReader.Reader
                 {
                     while (dataReader1.Read())
                     {
-                        string readerMode = dataReader1.GetString("ReaderMode");
                         string searchMode = dataReader1.GetString("SearchMode");
+                        string slFlag = dataReader1.GetString("SLFlag");
                         int session = dataReader1.GetInt32("Session");
                         int tagPopulation = dataReader1.GetInt32("TagPopulation");
 
-                        Console.WriteLine("Reader mode                                  : {0}", readerMode);
                         Console.WriteLine("Search mode                                  : {0}", searchMode);
+                        Console.WriteLine("Selected                                     : {0}", slFlag);
                         Console.WriteLine("Session                                      : {0} ", session);
                         Console.WriteLine("Tag Population                               : {0} \n", tagPopulation);
                     }
@@ -554,15 +556,15 @@ namespace RfidReader.Reader
                 Console.WriteLine(e.Message);
             }
         }
-        private void ReaderSettings(HighLevelInterface reader)
+        private void InvConfig(HighLevelInterface reader)
         {
             bool isWorking = true;
             int option;
 
             while (isWorking)
             {
-                Console.WriteLine("\n----Reader Settings----");
-                Console.WriteLine("1. Reader Mode, Search Mode & Session");
+                Console.WriteLine("\n----Inventory Config----");
+                Console.WriteLine("1. Search Mode & Session");
                 Console.WriteLine("2. Go back");
                 Console.Write("\n[1-2] : ");
 
@@ -689,7 +691,9 @@ namespace RfidReader.Reader
         {
             for (int i = 0; i < reader.AntennaList.Count; i++)
             {
-                Console.WriteLine(reader.AntennaList[(i)].PowerLevel);
+                Console.WriteLine(reader.AntennaList[i].PowerLevel);
+                //Console.WriteLine(reader.AntennaList[i].AntennaConfig.powerLevel);
+                //Console.WriteLine(reader.AntennaList[i].PowerLevel);
             }
 
             try
@@ -975,9 +979,13 @@ namespace RfidReader.Reader
         }
         private void DisplayAntennaStatus(HighLevelInterface reader)
         {
-            for (uint i = 0; i < reader.AntennaList.Count; i++)
+            for (int i = 0; i < reader.AntennaList.Count; i++)
             {
-                Console.WriteLine(reader.AntennaList[Convert.ToInt32(i)].AntennaStatus.state);
+                Console.WriteLine(reader.AntennaList[i].State);
+                //Console.WriteLine(reader.AntennaList[i].State.ToString());
+                //Console.WriteLine(reader.AntennaList[i].State.ToString());
+                //Console.WriteLine(reader.AntennaList[i].State);
+                //Console.WriteLine(AntennaConfig[i].PowerLevel);
             }
 
 
@@ -996,7 +1004,7 @@ namespace RfidReader.Reader
                     string status = dataReader.GetString("AntennaStatus");
 
                     Console.WriteLine($"Antenna                     : {antenna}");
-                    if (status.Equals(AntennaPortState.DISABLED)) Console.WriteLine("Antenna Status:             : OFF\n");
+                    if (status.Equals("DISABLED")) Console.WriteLine("Antenna Status:             : OFF\n");
                     else Console.WriteLine("Antenna Status:             : ON\n");
                 }
                 db.Con.Close();
@@ -1354,8 +1362,6 @@ namespace RfidReader.Reader
         }
         private void Default(HighLevelInterface reader)
         {
-            AntennaConfig = new AntennaList();
-
             AntennaPortStatus antennaPortStatus = new AntennaPortStatus();
             AntennaPortConfig antennaPortConfig = new AntennaPortConfig();
 
@@ -1386,10 +1392,11 @@ namespace RfidReader.Reader
                         cmd.Parameters.AddWithValue("@ant", i + 1);
                         cmd.Parameters.AddWithValue("@power", antennaPortConfig.powerLevel);
 
-                        if (db1.Con.State != ConnectionState.Open)
-                        {
-                            db1.Con.Open();
-                        }
+                        //if (db1.Con.State != ConnectionState.Open)
+                        //{
+                        //    db1.Con.Open();
+                        //}
+                        db1.OpenConnection();
                         cmd.ExecuteNonQuery();
                         db1.Con.Close();
                     }
@@ -1407,11 +1414,11 @@ namespace RfidReader.Reader
                     cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
                     cmd.Parameters.AddWithValue("@Antenna", i + 1);
 
-                    if (db6.Con.State != ConnectionState.Open)
-                    {
-                        db6.Con.Open();
-                    }
-
+                    //if (db6.Con.State != ConnectionState.Open)
+                    //{
+                    //    db6.Con.Open();
+                    //}
+                    db6.OpenConnection();
                     MySqlDataReader dataReader6 = cmd.ExecuteReader();
 
                     if (dataReader6.HasRows)
@@ -1424,9 +1431,7 @@ namespace RfidReader.Reader
                         }
 
                         reader.GetAntennaPortStatus(i, antennaPortStatus);
-
                         reader.SetAntennaPortStatus(i, antennaPortStatus);
-
                         reader.SetAntennaPortState(i, AntennaPortState.ENABLED);
 
                         string insQuery6 = "INSERT INTO antenna_info_tbl (AntennaID, AntennaStatus) VALUES (@aID, @antStatus)";
@@ -1458,8 +1463,6 @@ namespace RfidReader.Reader
         }
         private void LoadDB(HighLevelInterface reader)
         {
-            AntennaConfig = new AntennaList();
-
             AntennaPortStatus antennaPortStatus = new AntennaPortStatus();
             AntennaPortConfig antennaPortConfig = new AntennaPortConfig();
 
@@ -1481,21 +1484,38 @@ namespace RfidReader.Reader
 
                         if (antennaIndex < reader.AntennaList.Count)
                         {
-                            antennaPortConfig.powerLevel = Convert.ToUInt32(dataReader1.GetInt32("TransmitPower"));
-
                             reader.GetAntennaPortConfiguration(Convert.ToUInt32(antennaIndex), ref antennaPortConfig);
-
-                            reader.SetAntennaPortConfiguration(Convert.ToUInt32(antennaIndex), antennaPortConfig);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Antenna index {0} is out of range", antennaIndex);
+                            reader.AntennaList[antennaIndex].AntennaConfig.powerLevel = Convert.ToUInt32(dataReader1.GetInt32("TransmitPower"));
+                            reader.SetAntennaPortConfiguration(Convert.ToUInt32(antennaIndex), reader.AntennaList[antennaIndex].AntennaConfig);
                         }
                     }
                     db1.Con.Close();
                 }
 
-                //Reader Settings
+                //Inventory Config
+                MySqlDatabase db2 = new();
+
+                string selQuery2 = "SELECT * FROM reader_settings_tbl WHERE ReaderID = @ReaderID";
+                cmd = new MySqlCommand(selQuery2, db2.Con);
+                cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                MySqlDataReader dataReader2 = cmd.ExecuteReader();
+
+                if (dataReader2.HasRows)
+                {
+                    while (dataReader2.Read())
+                    {
+                        string selected = dataReader2.GetString("SLFlag");
+
+                        if (selected == "ALL") tagGroup.selected = Selected.ALL;
+                        else if (selected == "Asserted") tagGroup.selected = Selected.ASSERTED;
+                        else if (selected == "Deasserted") tagGroup.selected = Selected.DEASSERTED;
+
+                        tagGroup.session = (Session)System.Enum.Parse(typeof(Session), dataReader2.GetString("Session"));
+
+                    }
+                    db2.Con.Close();
+                }
+
 
                 //Enabling Antenna
 
@@ -1508,10 +1528,11 @@ namespace RfidReader.Reader
                     cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
                     cmd.Parameters.AddWithValue("@Antenna", (c + 1));
 
-                    if (db3.Con.State != ConnectionState.Open)
-                    {
-                        db3.Con.Open();
-                    }
+                    //if (db3.Con.State != ConnectionState.Open)
+                    //{
+                    //    db3.Con.Open();
+                    //}
+                    db3.OpenConnection();
 
                     MySqlDataReader dataReader3 = cmd.ExecuteReader();
 
@@ -1522,32 +1543,19 @@ namespace RfidReader.Reader
                             int antennaIndex = dataReader3.GetInt32("Antenna") - 1;
                             string antennaStatus = dataReader3.GetString("AntennaStatus");
 
+
+                            reader.GetAntennaPortStatus(Convert.ToUInt32(antennaIndex), antennaPortStatus);
+                            reader.SetAntennaPortStatus(Convert.ToUInt32(antennaIndex), reader.AntennaList[antennaIndex].AntennaStatus);
+
                             if (antennaStatus == "DISABLED" || antennaStatus == "UNKNOWN")
                             {
-                                //reader.AntennaList[Convert.ToInt32(c)].AntennaStatus.state = AntennaPortState.DISABLED;
-                                antennaPortStatus.state = AntennaPortState.DISABLED;
+                                reader.SetAntennaPortState(Convert.ToUInt32(antennaIndex), AntennaPortState.DISABLED);
                             }
 
                             else if (antennaStatus == "ENABLED")
                             {
-                                //reader.AntennaList[Convert.ToInt32(c)].AntennaStatus.state = AntennaPortState.ENABLED;
-                                antennaPortStatus.state = AntennaPortState.ENABLED;
+                                reader.SetAntennaPortState(Convert.ToUInt32(antennaIndex), AntennaPortState.ENABLED);
                             }
-
-                            reader.GetAntennaPortStatus(Convert.ToUInt32(antennaIndex), antennaPortStatus);
-
-                            reader.SetAntennaPortStatus(Convert.ToUInt32(antennaIndex), antennaPortStatus);
-
-                            reader.SetAntennaPortConfiguration(Convert.ToUInt32(antennaIndex), antennaPortConfig);
-
-                            //if (antennaIndex < reader.AntennaList.Count)
-                            //{
-                            //    reader.GetAntennaPortStatus(Convert.ToUInt32(antennaIndex), antennaPortStatus);
-
-                            //    reader.SetAntennaPortStatus(Convert.ToUInt32(antennaIndex), antennaPortStatus);
-
-                            //    reader.SetAntennaPortConfiguration(Convert.ToUInt32(antennaIndex), antennaPortConfig);
-                            //}
                         }
                         db3.Con.Close();
                     }

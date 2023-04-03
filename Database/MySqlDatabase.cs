@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace RfidReader.Database
 {
@@ -17,7 +18,13 @@ namespace RfidReader.Database
             Con = new MySqlConnection(MyConnectionString);
             this.Con.Open();
         }
-
+        public void OpenConnection()
+        {
+            if (this.Con.State != ConnectionState.Open)
+            {
+                this.Con.Open();
+            }
+        }
         public void Dispose()
         {
             this.Con.Dispose();
