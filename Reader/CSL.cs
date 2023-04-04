@@ -1087,6 +1087,12 @@ namespace RfidReader.Reader
                             Console.Write("\nGPI Port : ");
                             gpiPort = Convert.ToInt32(Console.ReadLine());
 
+                            if (gpiPort <= 0 || gpiPort > 4)
+                            {
+                                Console.WriteLine("Enter a valid Port in the range 1-4");
+                                continue;
+                            }
+
                             break;
                         case 2:
                             DisplayGPI(reader);
@@ -1141,8 +1147,8 @@ namespace RfidReader.Reader
         }
         private void ConfigureGPO(HighLevelInterface reader)
         {
-            bool isWorking = true;
-            int option, gpoPort;
+            bool isWorking = true, gpoMode = true;
+            int option, gpoPort, gpoStatus;
 
             while (isWorking)
             {
@@ -1162,9 +1168,103 @@ namespace RfidReader.Reader
                             Console.Write("\nGPO Port : ");
                             gpoPort = Convert.ToInt32(Console.ReadLine());
 
+                            if (gpoPort <= 0 || gpoPort > 4)
+                            {
+                                Console.WriteLine("Enter a valid Port in the range 1-4");
+                                continue;
+                            }
+
+                            Console.WriteLine("\nGPO Status");
+                            Console.WriteLine("[0] OFF");
+                            Console.WriteLine("[1] ON");
+                            Console.Write("Option   : ");
+
+                            gpoStatus = Convert.ToInt32(Console.ReadLine());
+
+                            if (gpoStatus == 0 || gpoStatus == 1)
+                            {
+                                if (gpoStatus == 0)
+                                {
+                                    gpoMode = false;
+
+                                    if (gpoPort == 1)
+                                        reader.SetGPO0Status(gpoMode);
+                                    else if (gpoPort == 2)
+                                        reader.SetGPO1Status(gpoMode);
+                                    else if (gpoPort == 3)
+                                        reader.SetGPO2Status(gpoMode);
+                                    else if (gpoPort == 4)
+                                        reader.SetGPO3Status(gpoMode);
+
+                                    Console.WriteLine("\nGPI Port : {0} \nMode     : Low", gpoPort);
+                                }
+                                else if (gpoStatus == 1)
+                                {
+                                    gpoMode = true;
+
+                                    if (gpoPort == 1)
+                                        reader.SetGPO0Status(gpoMode);
+                                    else if (gpoPort == 2)
+                                        reader.SetGPO1Status(gpoMode);
+                                    else if (gpoPort == 3)
+                                        reader.SetGPO2Status(gpoMode);
+                                    else if (gpoPort == 4)
+                                        reader.SetGPO3Status(gpoMode);
+
+                                    Console.WriteLine("\nGPI Port : {0} \nMode     : High", gpoPort);
+                                }
+
+                                Console.WriteLine("\nSet GPO Successfully");
+
+                                try
+                                {
+                                    MySqlDatabase db1 = new();
+                                    string selQuery = "SELECT * FROM gpo_tbl WHERE ReaderID = @ReaderID AND GPOPort = @GPOPort";
+                                    cmd = new MySqlCommand(selQuery, db1.Con);
+                                    cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                                    cmd.Parameters.AddWithValue("@GPOPort", gpoPort);
+
+                                    db1.OpenConnection();
+
+                                    MySqlDataReader dataReader2 = cmd.ExecuteReader();
+
+                                    if (dataReader2.HasRows)
+                                    {
+                                        dataReader2.Close();
+                                        var res2 = cmd.ExecuteScalar();
+                                        if (res2 != null)
+                                        {
+                                            GPOID = Convert.ToInt32(res2);
+                                        }
+
+                                        MySqlDatabase db2 = new();
+                                        string updQuery = "UPDATE gpo_tbl SET GPOMode = @gpoMode WHERE GPOID = @GPOID AND ReaderID = @ReaderID AND GPOPort = @GPOPort";
+                                        cmd = new MySqlCommand(updQuery, db2.Con);
+                                        cmd.Parameters.AddWithValue("@gpoMode", gpoMode.ToString());
+                                        cmd.Parameters.AddWithValue("@GPOID", GPOID);
+                                        cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                                        cmd.Parameters.AddWithValue("@GPOPort", gpoPort);
+                                        cmd.ExecuteNonQuery();
+                                    }
+                                    else
+                                    {
+                                        dataReader2.Close();
+                                    }
+                                    db1.Con.Close();
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid Input Format");
+                            }
                             break;
                         case 2:
-                            DisplayGPO();
+                            DisplayGPO(reader);
                             break;
                         case 3:
                             isWorking = false;
@@ -1184,7 +1284,7 @@ namespace RfidReader.Reader
                 }
             }
         }
-        private void DisplayGPO()
+        private void DisplayGPO(HighLevelInterface reader)
         {
             try
             {
