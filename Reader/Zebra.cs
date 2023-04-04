@@ -2278,10 +2278,6 @@ namespace RfidReader.Reader
                 Console.WriteLine(ex.Message);
             }
         }
-        private void x(RFIDReader reader, TagData tag)
-        {
-
-        }
         private void MyUpdateRead(Events.ReadEventData eventData)
         {
             DataTable dt = new();

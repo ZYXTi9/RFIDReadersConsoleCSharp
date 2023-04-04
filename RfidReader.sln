@@ -5,10 +5,6 @@ VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RfidReader", "RfidReader.csproj", "{6EC8229E-C497-4490-95CB-BFCE0775CF0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS463LinuxMonoDemoApp", "C:\Users\Vhong\Downloads\CSL-LinuxMono-CSharp-App-master\CSL-LinuxMono-CSharp-App-master\CS463LinuxMonoDemoApp\CS463LinuxMonoDemoApp\CS463LinuxMonoDemoApp.csproj", "{97A9C7AA-DFA1-4D59-9D1A-1E2ED258AC91}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS Native Demo VS2008", "..\..\..\..\Readers SDK\CSL-Callback-Unified-SDK-App-main\CSL-Callback-Unified-SDK-App-main\CSL RFID Demo Apps\Source\CS Native Demo XP\CS Native Demo VS2008.csproj", "{7337347A-11B3-45F5-B63B-2372B97707B6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,30 +27,6 @@ Global
 		{6EC8229E-C497-4490-95CB-BFCE0775CF0F}.VS2008 Release|Any CPU.Build.0 = Release|Any CPU
 		{6EC8229E-C497-4490-95CB-BFCE0775CF0F}.VS2008 Release|x86.ActiveCfg = Release|Any CPU
 		{6EC8229E-C497-4490-95CB-BFCE0775CF0F}.VS2008 Release|x86.Build.0 = Release|Any CPU
-		{97A9C7AA-DFA1-4D59-9D1A-1E2ED258AC91}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{97A9C7AA-DFA1-4D59-9D1A-1E2ED258AC91}.Debug|Any CPU.Build.0 = Debug|x86
-		{97A9C7AA-DFA1-4D59-9D1A-1E2ED258AC91}.Debug|x86.ActiveCfg = Debug|x86
-		{97A9C7AA-DFA1-4D59-9D1A-1E2ED258AC91}.Debug|x86.Build.0 = Debug|x86
-		{97A9C7AA-DFA1-4D59-9D1A-1E2ED258AC91}.Release|Any CPU.ActiveCfg = Release|x86
-		{97A9C7AA-DFA1-4D59-9D1A-1E2ED258AC91}.Release|Any CPU.Build.0 = Release|x86
-		{97A9C7AA-DFA1-4D59-9D1A-1E2ED258AC91}.Release|x86.ActiveCfg = Release|x86
-		{97A9C7AA-DFA1-4D59-9D1A-1E2ED258AC91}.Release|x86.Build.0 = Release|x86
-		{97A9C7AA-DFA1-4D59-9D1A-1E2ED258AC91}.VS2008 Release|Any CPU.ActiveCfg = Release|x86
-		{97A9C7AA-DFA1-4D59-9D1A-1E2ED258AC91}.VS2008 Release|Any CPU.Build.0 = Release|x86
-		{97A9C7AA-DFA1-4D59-9D1A-1E2ED258AC91}.VS2008 Release|x86.ActiveCfg = Release|x86
-		{97A9C7AA-DFA1-4D59-9D1A-1E2ED258AC91}.VS2008 Release|x86.Build.0 = Release|x86
-		{7337347A-11B3-45F5-B63B-2372B97707B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7337347A-11B3-45F5-B63B-2372B97707B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7337347A-11B3-45F5-B63B-2372B97707B6}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7337347A-11B3-45F5-B63B-2372B97707B6}.Debug|x86.Build.0 = Debug|Any CPU
-		{7337347A-11B3-45F5-B63B-2372B97707B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7337347A-11B3-45F5-B63B-2372B97707B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7337347A-11B3-45F5-B63B-2372B97707B6}.Release|x86.ActiveCfg = Release|Any CPU
-		{7337347A-11B3-45F5-B63B-2372B97707B6}.Release|x86.Build.0 = Release|Any CPU
-		{7337347A-11B3-45F5-B63B-2372B97707B6}.VS2008 Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7337347A-11B3-45F5-B63B-2372B97707B6}.VS2008 Release|Any CPU.Build.0 = Release|Any CPU
-		{7337347A-11B3-45F5-B63B-2372B97707B6}.VS2008 Release|x86.ActiveCfg = Release|Any CPU
-		{7337347A-11B3-45F5-B63B-2372B97707B6}.VS2008 Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

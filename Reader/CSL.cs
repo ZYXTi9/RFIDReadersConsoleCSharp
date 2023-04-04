@@ -10,50 +10,11 @@ using System.Text;
 
 namespace RfidReader.Reader
 {
-    public struct reader_info
-    {
-        public string str_reader_type;
-        public string str_ip_addr;
-        public string str_epc_len;
-        public string str_tid_len;
-        public string str_user_data_len;
-        public string str_toggleTarget;
-        public string str_multiBanks;
-
-        public int read_epc_len;               // EPC Length defined by user (by WORDS)
-        public int read_tid_len;               // TID Length defined by user (by WORDS)
-        public int read_user_data_len;        // User Data Length defined by user (by WORDS)
-
-        public AntennaSequenceMode antSeqMode;           // Antenna Sequence Mode
-        public byte[] antPort_seqTable;                 // Port Sequence Table
-        public uint antPort_seqTableSize;               // Port Sequence Table Size
-
-        public bool[] antPort_state;                  // Port Active / Inactive
-        public uint[] antPort_power;                 // RF Power defined by user
-        public uint[] antPort_dwell;                 // Dwell Time
-        public uint[] antPort_Pofile;                // Profile
-        public SingulationAlgorithm[] antPort_QAlg;            // Q Algorithm
-        public uint[] antPort_startQValue;              // Dynamic Q defined by user
-        public uint[] freq_channel;                 // Frequency Channel
-        public bool IsNonHopping_usrDef;
-
-        public uint init_toggleTarget;               // Toggle Target defined by user
-        public uint init_multiBanks;                  // Multibank defined by user
-        public RegionCode regionCode;               // Region Code
-                                                    //        public bool freqHopping;                    // Frequency Hopping Enable flag
-
-        public int epc_len_hex;              // number of digit display (defined by user) - EPC
-        public int tid_len_hex;              // number of digit display (defined by user) - TID
-        public int user_data_len_hex;   // number of digit display (defined by user) - User data
-
-    }
     class CSL
     {
         static Program p = new();
 
         MySqlCommand? cmd;
-
-        private static int ReadersNo;
 
         public static string ConnectionResult = "";
         public int ReaderTypeID { get; set; }
@@ -68,8 +29,6 @@ namespace RfidReader.Reader
         public static int RadioID { get; set; }
         public static int GPIID { get; set; }
         public static int GPOID { get; set; }
-
-        public static reader_info[] rdr_info_data = new reader_info[100];
 
         private TagGroup tagGroup;
 
@@ -116,7 +75,8 @@ namespace RfidReader.Reader
                             ConnectToNew();
                             break;
                         case 4:
-                            p.MainMenu();
+                            //p.MainMenu();
+                            ReadTag();
                             break;
                         default:
                             Console.WriteLine("Enter a valid Integer in the range 1-4");
@@ -262,10 +222,7 @@ namespace RfidReader.Reader
 
                         var getReaderID = cmd.ExecuteScalar();
 
-                        if (db3.Con.State != ConnectionState.Open)
-                        {
-                            db3.Con.Open();
-                        }
+                        db3.OpenConnection();
                         if (getReaderID != null)
                         {
                             ReaderID = Convert.ToInt32(getReaderID);
@@ -284,10 +241,7 @@ namespace RfidReader.Reader
                         if (dataReader4.HasRows)
                         {
                             dataReader4.Close();
-                            if (db4.Con.State != ConnectionState.Open)
-                            {
-                                db4.Con.Open();
-                            }
+                            db4.OpenConnection();
                             db4.Con.Close();
 
                             if (targetReader != null)
@@ -1093,6 +1047,7 @@ namespace RfidReader.Reader
                                 continue;
                             }
 
+
                             break;
                         case 2:
                             DisplayGPI(reader);
@@ -1196,7 +1151,7 @@ namespace RfidReader.Reader
                                     else if (gpoPort == 4)
                                         reader.SetGPO3Status(gpoMode);
 
-                                    Console.WriteLine("\nGPI Port : {0} \nMode     : Low", gpoPort);
+                                    Console.WriteLine("\nGPI Port : {0} \nMode     : OFF", gpoPort);
                                 }
                                 else if (gpoStatus == 1)
                                 {
@@ -1211,7 +1166,7 @@ namespace RfidReader.Reader
                                     else if (gpoPort == 4)
                                         reader.SetGPO3Status(gpoMode);
 
-                                    Console.WriteLine("\nGPI Port : {0} \nMode     : High", gpoPort);
+                                    Console.WriteLine("\nGPI Port : {0} \nMode     : ON", gpoPort);
                                 }
 
                                 Console.WriteLine("\nSet GPO Successfully");
@@ -1409,37 +1364,24 @@ namespace RfidReader.Reader
         //        }
         //    }
         //}
-        //static object TagInventoryLock = new object();
-        //static void ReaderXP_TagInventoryEvent(object sender, CSLibrary.Events.OnAsyncCallbackEventArgs e)
-        //{
-        //    string str_reader_info_0;
+        static object TagInventoryLock = new object();
+        static void ReaderXP_TagInventoryEvent(object sender, CSLibrary.Events.OnAsyncCallbackEventArgs e)
+        {
+            string str_reader_info_0;
 
-        //    lock (TagInventoryLock)
-        //    {
-        //        HighLevelInterface Reader = (HighLevelInterface)sender;
+            lock (TagInventoryLock)
+            {
+                HighLevelInterface Reader = (HighLevelInterface)sender;
 
-        //        // Display Tag info in Console Window
-        //        // str_reader_info_0 = "Reader ID: " +Reader.Name+ "  ( Port= " +e.info.antennaPort.ToString()+ "  Pwr=" +Reader.AntennaList[0].PowerLevel.ToString()+ "  RSSI=" +e.info.rssi.ToString()+ ")";
-        //        // sb_datalog.Append(str_reader_info_0);
+                // Display Tag info in Console Window
+                // str_reader_info_0 = "Reader ID: " +Reader.Name+ "  ( Port= " +e.info.antennaPort.ToString()+ "  Pwr=" +Reader.AntennaList[0].PowerLevel.ToString()+ "  RSSI=" +e.info.rssi.ToString()+ ")";
+                // sb_datalog.Append(str_reader_info_0);
 
-        //        str_reader_info_0 = Reader.IPAddress + " , " + e.info.epc.ToString();
-        //        str_reader_info_0 += " , Port= " + e.info.antennaPort.ToString();
-        //        // str_reader_info_0 += " , Time : " + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss UTC zzz") + ", ( Port= " +e.info.antennaPort.ToString()+ "  Pwr=" +Reader.AntennaList[0].PowerLevel.ToString()+ "  RSSI=" +e.info.rssi.ToString()+ " RName : " +Reader.Name+ ")" + "\r\n";
-        //        str_reader_info_0 += " , Time : " + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss UTC zzz") + ", ( Pwr=" + Reader.AntennaList[0].PowerLevel.ToString() + "  RSSI=" + e.info.rssi.ToString() + " RName : " + Reader.Name + ")" + "\r\n";
+                str_reader_info_0 = Reader.IPAddress + " , " + e.info.epc.ToString();
+                str_reader_info_0 += " , Port= " + e.info.antennaPort.ToString();
 
-        //        str_dataLogEvt += str_reader_info_0;
-
-
-        //        if (DataLog_Sample(Reader.IPAddress) == 1)
-        //        {
-        //            string test_name = Reader.Name;         // For Test only
-
-        //            str_dataLogToFile = str_dataLogEvt;
-        //            str_dataLogEvt = "";
-        //        }
-
-        //    }
-        //}
+            }
+        }
         public void ReadTag()
         {
             try
@@ -1449,6 +1391,8 @@ namespace RfidReader.Reader
                     uniqueTags.Clear();
                     totalTags = 0;
                     reader.StartOperation(Operation.TAG_RANGING, false);
+                    TagCallbackInfo info = new TagCallbackInfo();
+                    Console.WriteLine(info.epc.ToString());
                 }
 
                 Console.ReadKey();
@@ -1637,10 +1581,7 @@ namespace RfidReader.Reader
                         cmd.Parameters.AddWithValue("@gpiPortNo", (i + 1));
                         cmd.Parameters.AddWithValue("@gpiStats", status.ToString());
 
-                        if (db7.Con.State != ConnectionState.Open)
-                        {
-                            db7.Con.Open();
-                        }
+                        db7.OpenConnection();
                         cmd.ExecuteNonQuery();
                         db7.Con.Close();
                     }
