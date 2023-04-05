@@ -30,6 +30,9 @@ namespace RfidReader.Reader
         public static int GPIID { get; set; }
         public static int GPOID { get; set; }
 
+        public delegate void TagReadHandler(object sender, CSLibrary.Events.OnAsyncCallbackEventArgs e);
+        public event TagReadHandler TagRead;
+
         private TagGroup tagGroup;
 
         Result ret;
@@ -1326,60 +1329,92 @@ namespace RfidReader.Reader
             }
         }
 
-        //static object StateChangedLock = new object();
-        //static void ReaderXP_StateChangedEvent(object sender, CSLibrary.Events.OnStateChangedEventArgs e)
-        //{
-
-        //    lock (StateChangedLock)
-        //    {
-        //        HighLevelInterface t_Reader = (HighLevelInterface)sender;
-        //        ReaderCtrlClass t_readerCtrl = new ReaderCtrlClass();
-        //        string t_str_readerinfo;
-
-        //        switch (e.state)
-        //        {
-        //            case CSLibrary.Constants.RFState.IDLE:
-        //                break;
-        //            case CSLibrary.Constants.RFState.BUSY:
-        //                break;
-        //            case CSLibrary.Constants.RFState.RESET:
-        //                // Reconnect reader and restart inventory
-
-        //                t_str_readerinfo = t_Reader.IPAddress + " : Reader is disconnected";
-        //                Console.WriteLine(t_str_readerinfo);
-        //                str_dataLogToFile += "\r\n" + t_str_readerinfo + "\r\n";
-
-        //                TextWriter tw = new StreamWriter("ReaderResetLog_" + DateTime.Now.ToString("yyyyMMdd") + ".Txt", true);
-        //                tw.WriteLine(t_str_readerinfo + "          " + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss UTC zzz"));
-        //                tw.Close();
-
-        //                //Use other thread to create progress
-        //                t_readerCtrl.Reader = t_Reader;
-        //                Thread reset = new Thread(t_readerCtrl.Reset);
-        //                reset.Start();
-
-        //                break;
-        //            case CSLibrary.Constants.RFState.ABORT:
-        //                break;
-        //        }
-        //    }
-        //}
-        static object TagInventoryLock = new object();
-        static void ReaderXP_TagInventoryEvent(object sender, CSLibrary.Events.OnAsyncCallbackEventArgs e)
+        static void ConnectionLostEvent(object sender, CSLibrary.Events.OnStateChangedEventArgs e)
         {
-            string str_reader_info_0;
-
-            lock (TagInventoryLock)
+            switch (e.state)
             {
-                HighLevelInterface Reader = (HighLevelInterface)sender;
+                case CSLibrary.Constants.RFState.IDLE:
+                    break;
+                case CSLibrary.Constants.RFState.BUSY:
+                    break;
+                case CSLibrary.Constants.RFState.RESET:
+                    // Reconnect reader and restart inventory
 
-                // Display Tag info in Console Window
-                // str_reader_info_0 = "Reader ID: " +Reader.Name+ "  ( Port= " +e.info.antennaPort.ToString()+ "  Pwr=" +Reader.AntennaList[0].PowerLevel.ToString()+ "  RSSI=" +e.info.rssi.ToString()+ ")";
-                // sb_datalog.Append(str_reader_info_0);
+                    break;
+                case CSLibrary.Constants.RFState.ABORT:
+                    break;
+            }
+        }
+        private void TagInventoryEvent(object sender, CSLibrary.Events.OnAsyncCallbackEventArgs e)
+        {
+            DataTable dt = new();
 
-                str_reader_info_0 = Reader.IPAddress + " , " + e.info.epc.ToString();
-                str_reader_info_0 += " , Port= " + e.info.antennaPort.ToString();
+            dt.Columns.Add("EPC");
 
+            foreach (HighLevelInterface reader in Program.cslReaders)
+            {
+                try
+                {
+                    TagCallbackInfo tag = e.info;
+                    if (tag != null)
+                    {
+                        for (int nIndex = 0; nIndex < tag.count; nIndex++)
+                        {
+                            string epc = tag.epc.ToString();
+                            bool isFound = false;
+
+                            lock (uniqueTags.SyncRoot)
+                            {
+                                isFound = uniqueTags.ContainsKey(epc);
+                                if (!isFound)
+                                {
+                                    isFound = uniqueTags.ContainsKey(epc);
+                                }
+                            }
+
+                            dt.Rows.Add(epc);
+
+                            totalTags += Convert.ToInt32(tag.count);
+
+                            if (!isFound)
+                            {
+                                Console.WriteLine($"{epc}");
+
+                                MySqlDatabase db1 = new();
+                                string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @Antenna";
+
+                                cmd = new MySqlCommand(selQuery1, db1.Con);
+                                cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                                cmd.Parameters.AddWithValue("@Antenna", tag.antennaPort);
+
+                                db1.OpenConnection();
+                                var res = cmd.ExecuteScalar();
+                                if (res != null)
+                                {
+                                    AntennaID = Convert.ToInt32(res);
+                                }
+                                db1.Con.Close();
+
+                                MySqlDatabase db2 = new();
+                                string selQuery2 = @"SpRead";
+                                cmd = new MySqlCommand(selQuery2, db2.Con);
+                                cmd.CommandType = CommandType.StoredProcedure;
+
+                                cmd.Parameters.AddWithValue("@aID", AntennaID);
+                                cmd.Parameters.AddWithValue("@epcTag", epc);
+                                db2.OpenConnection();
+                                cmd.ExecuteScalar();
+                                db2.Con.Close();
+
+                                uniqueTags.Add(epc, dt.Rows);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
         public void ReadTag()
@@ -1391,8 +1426,7 @@ namespace RfidReader.Reader
                     uniqueTags.Clear();
                     totalTags = 0;
                     reader.StartOperation(Operation.TAG_RANGING, false);
-                    TagCallbackInfo info = new TagCallbackInfo();
-                    Console.WriteLine(info.epc.ToString());
+                    reader.OnAsyncCallback += new EventHandler<CSLibrary.Events.OnAsyncCallbackEventArgs>(TagInventoryEvent);
                 }
 
                 Console.ReadKey();
@@ -1438,7 +1472,7 @@ namespace RfidReader.Reader
                     for (int i = 0; i < reader.AntennaList.Count; i++)
                     {
                         reader.GetAntennaPortConfiguration(Convert.ToUInt32(i), ref antennaPortConfig);
-                        reader.AntennaList[i].AntennaConfig.powerLevel = 100;
+                        reader.AntennaList[i].AntennaConfig.powerLevel = 200;
                         reader.SetAntennaPortConfiguration(Convert.ToUInt32(i), reader.AntennaList[i].AntennaConfig);
 
                         cmd.Parameters.Clear();
