@@ -31,11 +31,10 @@ namespace RfidReader.Reader
         public static int GPOID { get; set; }
 
         public delegate void TagReadHandler(object sender, CSLibrary.Events.OnAsyncCallbackEventArgs e);
-        public event TagReadHandler TagRead;
 
         private TagGroup tagGroup;
 
-        Result ret;
+        public Result ret;
 
         public static Hashtable uniqueTags = new Hashtable();
         public static int totalTags;
@@ -254,10 +253,14 @@ namespace RfidReader.Reader
                                     LoadDB(targetReader);
                                 }
                             }
+
+                            reader.OnStateChanged += new EventHandler<CSLibrary.Events.OnStateChangedEventArgs>(ConnectionLostEvent);
                         }
                         else
                         {
                             Default(targetReader);
+
+                            reader.OnStateChanged += new EventHandler<CSLibrary.Events.OnStateChangedEventArgs>(ConnectionLostEvent);
                         }
                     }
                     Console.WriteLine("Successfully connected.");
@@ -518,12 +521,12 @@ namespace RfidReader.Reader
         private void InvConfig(HighLevelInterface reader)
         {
             bool isWorking = true;
-            int option;
+            int option, selected, session, searchMode, antenna;
 
             while (isWorking)
             {
                 Console.WriteLine("\n----Inventory Config----");
-                Console.WriteLine("1. Search Mode & Session");
+                Console.WriteLine("1. Selected, Session & Target");
                 Console.WriteLine("2. Go back");
                 Console.Write("\n[1-2] : ");
 
@@ -533,6 +536,95 @@ namespace RfidReader.Reader
                     switch (option)
                     {
                         case 1:
+                            try
+                            {
+                                Console.WriteLine("\nSelected Menu");
+                                Console.WriteLine("1. ALL");
+                                Console.WriteLine("2. ASSERTED");
+                                Console.WriteLine("3. DEASSERTED\n");
+
+                                Console.Write("Selected        : ");
+                                selected = Convert.ToInt32(Console.ReadLine());
+
+                                if (selected == 1) tagGroup.selected = Selected.ALL;
+                                else if (selected == 2) tagGroup.selected = Selected.ASSERTED;
+                                else if (selected == 3) tagGroup.selected = Selected.DEASSERTED;
+                                else
+                                {
+                                    Console.WriteLine("Enter a valid Integer in the range 1-3\n");
+                                    continue;
+                                }
+
+                                Console.WriteLine("\nSession Menu");
+                                Console.WriteLine("1. Session 0");
+                                Console.WriteLine("2. Session 1");
+                                Console.WriteLine("3. Session 2");
+                                Console.WriteLine("4. Session 3\n");
+
+                                Console.Write("Session        : ");
+                                session = Convert.ToInt32(Console.ReadLine());
+
+                                if (session == 1) tagGroup.session = Session.S0;
+                                else if (session == 2) tagGroup.session = Session.S1;
+                                else if (session == 3) tagGroup.session = Session.S2;
+                                else if (session == 4) tagGroup.session = Session.S3;
+                                else
+                                {
+                                    Console.WriteLine("Enter a valid Enter a valid Integer in the range 1-4\n");
+                                    continue;
+                                }
+
+                                Console.WriteLine("\nTarget Menu");
+                                Console.WriteLine("1. Flag A");
+                                Console.WriteLine("2. Flag B\n");
+
+                                Console.Write("Target    : ");
+                                searchMode = Convert.ToInt32(Console.ReadLine());
+
+                                if (searchMode == 1) tagGroup.target = SessionTarget.A;
+                                else if (searchMode == 2) tagGroup.target = SessionTarget.B;
+                                else
+                                {
+                                    Console.WriteLine("Enter a valid Integer in the range 1-2\n");
+                                    continue;
+                                }
+                                MySqlDatabase db1 = new();
+
+                                for (antenna = 0; antenna < reader.AntennaList.Count; antenna++)
+                                {
+                                    string query = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @Antenna";
+
+                                    cmd = new MySqlCommand(query, db1.Con);
+                                    cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+                                    cmd.Parameters.AddWithValue("@Antenna", (antenna + 1));
+
+                                    db1.OpenConnection();
+                                    var res = cmd.ExecuteScalar();
+                                    if (res != null)
+                                    {
+                                        AntennaID = Convert.ToInt32(res);
+                                    }
+                                    db1.Con.Close();
+
+                                    MySqlDatabase db2 = new();
+                                    string selQuery = @"SpCSLSingulation";
+                                    cmd = new MySqlCommand(selQuery, db2.Con);
+                                    cmd.CommandType = CommandType.StoredProcedure;
+
+                                    cmd.Parameters.AddWithValue("@aID", AntennaID);
+                                    cmd.Parameters.AddWithValue("@selected", tagGroup.selected.ToString());
+                                    cmd.Parameters.AddWithValue("@sess", tagGroup.session.ToString());
+                                    cmd.Parameters.AddWithValue("@invState", tagGroup.target.ToString());
+                                    db2.OpenConnection();
+                                    cmd.ExecuteScalar();
+                                    db2.Con.Close();
+                                }
+                                Console.WriteLine("\nSet Singulation Control Successfully");
+                            }
+                            catch (Exception)
+                            {
+                                Console.WriteLine("\nCSL Reader Settings Error");
+                            }
                             break;
                         case 2:
                             isWorking = false;
@@ -1050,7 +1142,6 @@ namespace RfidReader.Reader
                                 continue;
                             }
 
-
                             break;
                         case 2:
                             DisplayGPI(reader);
@@ -1333,15 +1424,7 @@ namespace RfidReader.Reader
         {
             switch (e.state)
             {
-                case CSLibrary.Constants.RFState.IDLE:
-                    break;
-                case CSLibrary.Constants.RFState.BUSY:
-                    break;
                 case CSLibrary.Constants.RFState.RESET:
-                    // Reconnect reader and restart inventory
-
-                    break;
-                case CSLibrary.Constants.RFState.ABORT:
                     break;
             }
         }
@@ -1461,6 +1544,7 @@ namespace RfidReader.Reader
                 string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID";
                 cmd = new MySqlCommand(selQuery1, db1.Con);
                 cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
+
                 MySqlDataReader dataReader1 = cmd.ExecuteReader();
 
                 if (!dataReader1.HasRows)
@@ -1472,7 +1556,7 @@ namespace RfidReader.Reader
                     for (int i = 0; i < reader.AntennaList.Count; i++)
                     {
                         reader.GetAntennaPortConfiguration(Convert.ToUInt32(i), ref antennaPortConfig);
-                        reader.AntennaList[i].AntennaConfig.powerLevel = 200;
+                        reader.AntennaList[i].AntennaConfig.powerLevel = 100;
                         reader.SetAntennaPortConfiguration(Convert.ToUInt32(i), reader.AntennaList[i].AntennaConfig);
 
                         cmd.Parameters.Clear();
