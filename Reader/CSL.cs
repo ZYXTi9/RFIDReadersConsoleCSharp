@@ -30,8 +30,6 @@ namespace RfidReader.Reader
         public static int GPIID { get; set; }
         public static int GPOID { get; set; }
 
-        public delegate void TagReadHandler(object sender, CSLibrary.Events.OnAsyncCallbackEventArgs e);
-
         private TagGroup tagGroup;
 
         public Result ret;
@@ -253,14 +251,10 @@ namespace RfidReader.Reader
                                     LoadDB(targetReader);
                                 }
                             }
-
-                            reader.OnStateChanged += new EventHandler<CSLibrary.Events.OnStateChangedEventArgs>(ConnectionLostEvent);
                         }
                         else
                         {
                             Default(targetReader);
-
-                            reader.OnStateChanged += new EventHandler<CSLibrary.Events.OnStateChangedEventArgs>(ConnectionLostEvent);
                         }
                     }
                     Console.WriteLine("Successfully connected.");
@@ -1420,15 +1414,38 @@ namespace RfidReader.Reader
             }
         }
 
-        static void ConnectionLostEvent(object sender, CSLibrary.Events.OnStateChangedEventArgs e)
+        private async void ConnectionLostEvent(object sender, CSLibrary.Events.OnStateChangedEventArgs e)
         {
-            switch (e.state)
+            try
             {
-                case CSLibrary.Constants.RFState.RESET:
-                    break;
+                switch (e.state)
+                {
+                    case CSLibrary.Constants.RFState.DISCONNECTED:
+                        Console.WriteLine("Connection Lost");
+
+                        foreach (HighLevelInterface reader in Program.cslReaders)
+                        {
+                            while (await Task.Run(() => reader.Reconnect(1) != Result.OK)) ;
+                            reader.StartOperation(Operation.TAG_RANGING, false);
+                        }
+                        break;
+                    case CSLibrary.Constants.RFState.RESET:
+                        Console.WriteLine("Connection Lost");
+
+                        foreach (HighLevelInterface reader in Program.cslReaders)
+                        {
+                            while (await Task.Run(() => reader.Reconnect(1) != Result.OK)) ;
+                            reader.StartOperation(Operation.TAG_RANGING, false);
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
-        private void TagInventoryEvent(object sender, CSLibrary.Events.OnAsyncCallbackEventArgs e)
+        private async void TagInventoryEvent(object sender, CSLibrary.Events.OnAsyncCallbackEventArgs e)
         {
             DataTable dt = new();
 
@@ -1468,10 +1485,10 @@ namespace RfidReader.Reader
 
                                 cmd = new MySqlCommand(selQuery1, db1.Con);
                                 cmd.Parameters.AddWithValue("@ReaderID", ReaderID);
-                                cmd.Parameters.AddWithValue("@Antenna", tag.antennaPort);
+                                cmd.Parameters.AddWithValue("@Antenna", tag.antennaPort + 1);
 
                                 db1.OpenConnection();
-                                var res = cmd.ExecuteScalar();
+                                var res = await cmd.ExecuteScalarAsync();
                                 if (res != null)
                                 {
                                     AntennaID = Convert.ToInt32(res);
@@ -1486,7 +1503,7 @@ namespace RfidReader.Reader
                                 cmd.Parameters.AddWithValue("@aID", AntennaID);
                                 cmd.Parameters.AddWithValue("@epcTag", epc);
                                 db2.OpenConnection();
-                                cmd.ExecuteScalar();
+                                await cmd.ExecuteScalarAsync();
                                 db2.Con.Close();
 
                                 uniqueTags.Add(epc, dt.Rows);
@@ -1500,7 +1517,7 @@ namespace RfidReader.Reader
                 }
             }
         }
-        public void ReadTag()
+        public async void ReadTag()
         {
             try
             {
@@ -1508,15 +1525,28 @@ namespace RfidReader.Reader
                 {
                     uniqueTags.Clear();
                     totalTags = 0;
-                    reader.StartOperation(Operation.TAG_RANGING, false);
-                    reader.OnAsyncCallback += new EventHandler<CSLibrary.Events.OnAsyncCallbackEventArgs>(TagInventoryEvent);
+
+                    if (reader.State == RFState.IDLE)
+                    {
+                        reader.StartOperation(Operation.TAG_RANGING, false);
+                    }
+                    else if (reader.State == RFState.RESET || reader.State == RFState.DISCONNECTED)
+                    {
+                        while (await Task.Run(() => reader.Reconnect(1) != Result.OK)) ;
+                        reader.StartOperation(Operation.TAG_RANGING, false);
+                    }
+                    AttachCallback(true, reader);
                 }
 
                 Console.ReadKey();
 
                 foreach (HighLevelInterface reader in Program.cslReaders)
                 {
-                    reader.StopOperation(true);
+                    if (reader.State == RFState.BUSY)
+                    {
+                        reader.StopOperation(true);
+                    }
+                    //AttachCallback(false, reader);
                     Console.WriteLine("\nCSL Total Tags: " + uniqueTags.Count + "(" + totalTags + ")");
 
                     MySqlDatabase db1 = new();
@@ -1529,6 +1559,19 @@ namespace RfidReader.Reader
             catch (Exception ex)
             {
                 Console.WriteLine("An error occurred while executing the ReadTag method: " + ex.Message);
+            }
+        }
+        private void AttachCallback(bool en, HighLevelInterface reader)
+        {
+            if (en)
+            {
+                reader.OnStateChanged += new EventHandler<CSLibrary.Events.OnStateChangedEventArgs>(ConnectionLostEvent);
+                reader.OnAsyncCallback += new EventHandler<CSLibrary.Events.OnAsyncCallbackEventArgs>(TagInventoryEvent);
+            }
+            else
+            {
+                reader.OnStateChanged -= ConnectionLostEvent;
+                reader.OnAsyncCallback -= TagInventoryEvent;
             }
         }
         private void Default(HighLevelInterface reader)

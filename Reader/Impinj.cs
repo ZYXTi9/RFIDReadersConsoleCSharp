@@ -1878,6 +1878,9 @@ namespace RfidReader.Reader
                     totalTags = 0;
                     reader.Start();
                     reader.TagsReported += OnTagsReported;
+
+                    //reader.KeepaliveReceived += OnKeepaliveReceived;
+                    //reader.ConnectionLost += OnConnectionLost;
                     //reader.TagsReported += async (sender, report) =>
                     //{
                     //    await Task.Run(() => OnTagsReported(sender, report));

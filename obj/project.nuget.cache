@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZejjgkrOncW24hwz5vwYx9aqJ105O5+Q9MLW4TiyqmokLQZ7rqgMk+Ozvs71YcPvrZBGHsCh/tVGu0+CMLBEFg==",
+  "dgSpecHash": "APSgJhQXe+454LZPOqJDdrou9eh0hbwDNcQjI6YVpa2wvHbNinK3gUbWJ8yzA2QbBl0gaq4vLWOMUsvb29pHIg==",
   "success": true,
-  "projectFilePath": "D:\\OneDrive\\Desktop\\New\\RFIDReaderConsoleLatest03152023\\RFIDReaderConsole-main\\RFIDReaderConsole-main\\RfidReader.csproj",
+  "projectFilePath": "D:\\OneDrive\\Desktop\\New\\RFIDReaderConsoleLatest04122023\\RFIDReaderConsole-main\\RFIDReaderConsole-main\\RfidReader.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Vhong\\.nuget\\packages\\google.protobuf\\3.19.4\\google.protobuf.3.19.4.nupkg.sha512",
     "C:\\Users\\Vhong\\.nuget\\packages\\k4os.compression.lz4\\1.2.6\\k4os.compression.lz4.1.2.6.nupkg.sha512",

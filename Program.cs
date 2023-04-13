@@ -104,6 +104,10 @@ namespace RfidReader
                                     {
                                         zebra.ReadTag();
                                     }
+                                    if (rTypeID == 3 && connected == "Connected")
+                                    {
+                                        csl.ReadTag();
+                                    }
                                 }
                                 MainMenu();
                             }

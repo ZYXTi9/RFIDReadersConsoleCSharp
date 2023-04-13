@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OneDrive\\Desktop\\New\\RFIDReaderConsoleLatest03152023\\RFIDReaderConsole-main\\RFIDReaderConsole-main\\RfidReader.csproj": {}
+    "D:\\OneDrive\\Desktop\\New\\RFIDReaderConsoleLatest04122023\\RFIDReaderConsole-main\\RFIDReaderConsole-main\\RfidReader.csproj": {}
   },
   "projects": {
-    "D:\\OneDrive\\Desktop\\New\\RFIDReaderConsoleLatest03152023\\RFIDReaderConsole-main\\RFIDReaderConsole-main\\RfidReader.csproj": {
+    "D:\\OneDrive\\Desktop\\New\\RFIDReaderConsoleLatest04122023\\RFIDReaderConsole-main\\RFIDReaderConsole-main\\RfidReader.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OneDrive\\Desktop\\New\\RFIDReaderConsoleLatest03152023\\RFIDReaderConsole-main\\RFIDReaderConsole-main\\RfidReader.csproj",
+        "projectUniqueName": "D:\\OneDrive\\Desktop\\New\\RFIDReaderConsoleLatest04122023\\RFIDReaderConsole-main\\RFIDReaderConsole-main\\RfidReader.csproj",
         "projectName": "RfidReader",
-        "projectPath": "D:\\OneDrive\\Desktop\\New\\RFIDReaderConsoleLatest03152023\\RFIDReaderConsole-main\\RFIDReaderConsole-main\\RfidReader.csproj",
+        "projectPath": "D:\\OneDrive\\Desktop\\New\\RFIDReaderConsoleLatest04122023\\RFIDReaderConsole-main\\RFIDReaderConsole-main\\RfidReader.csproj",
         "packagesPath": "C:\\Users\\Vhong\\.nuget\\packages\\",
-        "outputPath": "D:\\OneDrive\\Desktop\\New\\RFIDReaderConsoleLatest03152023\\RFIDReaderConsole-main\\RFIDReaderConsole-main\\obj\\",
+        "outputPath": "D:\\OneDrive\\Desktop\\New\\RFIDReaderConsoleLatest04122023\\RFIDReaderConsole-main\\RFIDReaderConsole-main\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Vhong\\AppData\\Roaming\\NuGet\\NuGet.Config",
