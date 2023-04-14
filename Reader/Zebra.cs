@@ -2243,19 +2243,19 @@ namespace RfidReader.Reader
                     bgWorker.RunWorkerAsync();
                 }
 
-                Console.ReadKey();
+                //Console.ReadKey();
 
-                foreach (RFIDReader reader in Program.zebraReaders)
-                {
-                    reader.Actions.Inventory.Stop();
-                    Console.WriteLine("\nZebra Total Tags: " + uniqueTags.Count + "(" + totalTags + ")");
+                //foreach (RFIDReader reader in Program.zebraReaders)
+                //{
+                //    reader.Actions.Inventory.Stop();
+                //    Console.WriteLine("\nZebra Total Tags: " + uniqueTags.Count + "(" + totalTags + ")");
 
-                    MySqlDatabase db1 = new();
-                    string updQuery = "UPDATE read_tbl SET TimeOut = TIME_FORMAT(NOW(), '%h:%i:%s %p'), LogActive = 'No' WHERE LogActive = 'Yes'";
-                    cmd = new MySqlCommand(updQuery, db1.Con);
-                    cmd.Parameters.Clear();
-                    cmd.ExecuteNonQuery();
-                }
+                //    MySqlDatabase db1 = new();
+                //    string updQuery = "UPDATE read_tbl SET TimeOut = TIME_FORMAT(NOW(), '%h:%i:%s %p'), LogActive = 'No' WHERE LogActive = 'Yes'";
+                //    cmd = new MySqlCommand(updQuery, db1.Con);
+                //    cmd.Parameters.Clear();
+                //    cmd.ExecuteNonQuery();
+                //}
             }
             catch (IOException)
             {
@@ -2276,6 +2276,22 @@ namespace RfidReader.Reader
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+        public void StopRead()
+        {
+            //Console.ReadKey();
+
+            foreach (RFIDReader reader in Program.zebraReaders)
+            {
+                reader.Actions.Inventory.Stop();
+                Console.WriteLine("\nZebra Total Tags: " + uniqueTags.Count + "(" + totalTags + ")");
+
+                MySqlDatabase db1 = new();
+                string updQuery = "UPDATE read_tbl SET TimeOut = TIME_FORMAT(NOW(), '%h:%i:%s %p'), LogActive = 'No' WHERE LogActive = 'Yes'";
+                cmd = new MySqlCommand(updQuery, db1.Con);
+                cmd.Parameters.Clear();
+                cmd.ExecuteNonQuery();
             }
         }
         private void MyUpdateRead(Events.ReadEventData eventData)
@@ -2312,7 +2328,7 @@ namespace RfidReader.Reader
 
                             if (!isFound)
                             {
-                                Console.WriteLine($"{epc} {tag.AntennaID}");
+                                Console.WriteLine($"{epc} {reader.HostName}");
 
                                 MySqlDatabase db1 = new();
                                 string selQuery1 = "SELECT * FROM antenna_tbl WHERE ReaderID = @ReaderID AND Antenna = @Antenna";

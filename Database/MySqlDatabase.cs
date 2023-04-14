@@ -18,11 +18,11 @@ namespace RfidReader.Database
             Con = new MySqlConnection(MyConnectionString);
             this.Con.Open();
         }
-        public void OpenConnection()
+        public async Task OpenConnectionAsync()
         {
             if (this.Con.State != ConnectionState.Open)
             {
-                this.Con.Open();
+                await this.Con.OpenAsync();
             }
         }
         public void Dispose()

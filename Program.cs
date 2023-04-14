@@ -11,6 +11,10 @@ namespace RfidReader
     {
         MySqlCommand? cmd;
 
+        Reader.Impinj impinj = new();
+        Reader.Zebra zebra = new();
+        Reader.CSL csl = new();
+
         public static List<ImpinjReader> impinjReaders = new List<ImpinjReader>();
         public static List<RFIDReader> zebraReaders = new List<RFIDReader>();
         public static List<HighLevelInterface> cslReaders = new List<HighLevelInterface>();
@@ -26,13 +30,9 @@ namespace RfidReader
         }
         public void MainMenu()
         {
-            Reader.Impinj impinj = new();
-            Reader.Zebra zebra = new();
-            Reader.CSL csl = new();
-            MySqlDatabase db = new();
-
             try
             {
+                MySqlDatabase db = new();
                 string selQuery = "SELECT ReaderType FROM reader_type_tbl";
                 cmd = new MySqlCommand(selQuery, db.Con);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -48,98 +48,79 @@ namespace RfidReader
                 Console.WriteLine("Exit");
                 db.Con.Close();
                 dataReader.Close();
+
+                Console.Write("\nOption[1-5]: ");
+                int connectedTo = Convert.ToInt32(Console.ReadLine());
+                ResultMenu(connectedTo);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-
-            int connectedTo = 0;
-
-            while (connectedTo != 1 && connectedTo != 2 && connectedTo != 3 && connectedTo != 4 && connectedTo != 5)
+        }
+        private void ResultMenu(int connectedTo)
+        {
+            if (connectedTo == 1)
             {
-                try
+                impinj.ReaderTypeID = connectedTo;
+                impinj.ImpinjMenu();
+            }
+            else if (connectedTo == 2)
+            {
+                zebra.ReaderTypeID = connectedTo;
+                zebra.ZebraMenu();
+            }
+            else if (connectedTo == 3)
+            {
+                csl.ReaderTypeID = connectedTo;
+                csl.CSLMenu();
+            }
+            else if (connectedTo == 4)
+            {
+                using (MySqlDatabase db2 = new MySqlDatabase())
                 {
-                    Console.Write("\nOption[1-5]: ");
-                    connectedTo = Convert.ToInt32(Console.ReadLine());
+                    string selQuery2 = "SELECT * FROM reader_tbl WHERE Status = 'Connected'";
+                    cmd = new MySqlCommand(selQuery2, db2.Con);
+                    MySqlDataReader dataReader2 = cmd.ExecuteReader();
 
-                    if (connectedTo == 1)
+                    if (dataReader2.HasRows)
                     {
-                        impinj.ReaderTypeID = connectedTo;
-                        impinj.ImpinjMenu();
-                    }
-                    else if (connectedTo == 2)
-                    {
-                        zebra.ReaderTypeID = connectedTo;
-                        zebra.ZebraMenu();
-                    }
-                    else if (connectedTo == 3)
-                    {
-                        csl.ReaderTypeID = connectedTo;
-                        csl.CSLMenu();
-                    }
-                    else if (connectedTo == 4)
-                    {
-                        using (MySqlDatabase db2 = new MySqlDatabase())
-                        {
-                            string selQuery2 = "SELECT * FROM reader_tbl WHERE Status = 'Connected'";
-                            cmd = new MySqlCommand(selQuery2, db2.Con);
-                            MySqlDataReader dataReader2 = cmd.ExecuteReader();
+                        Console.WriteLine("Inventory Started");
+                        Console.WriteLine("Press Enter to stop inventory");
 
-                            if (dataReader2.HasRows)
-                            {
-                                Console.WriteLine("Inventory Started");
-                                Console.WriteLine("Press Enter to stop inventory");
+                        impinj.ReadTag();
+                        zebra.ReadTag();
+                        csl.ReadTag();
 
-                                while (dataReader2.Read())
-                                {
-                                    int rTypeID = dataReader2.GetInt32("ReaderTypeID");
-                                    string connected = dataReader2.GetString("Status");
+                        Console.ReadKey();
 
-                                    if (rTypeID == 1 && connected == "Connected")
-                                    {
-                                        impinj.ReadTag();
-                                    }
-                                    if (rTypeID == 2 && connected == "Connected")
-                                    {
-                                        zebra.ReadTag();
-                                    }
-                                    if (rTypeID == 3 && connected == "Connected")
-                                    {
-                                        csl.ReadTag();
-                                    }
-                                }
-                                MainMenu();
-                            }
-                            else
-                            {
-                                Console.WriteLine("\nNo Reader Connected\n");
-                                MainMenu();
-                            }
-                        }
-                    }
-                    else if (connectedTo == 5)
-                    {
-                        Console.WriteLine("Exiting application...");
-                        using (MySqlDatabase db3 = new MySqlDatabase())
-                        {
-                            string updQuery = "UPDATE reader_tbl SET Status = 'Disconnected' WHERE Status = 'Connected'";
-
-                            using (MySqlCommand cmd = new MySqlCommand(updQuery, db3.Con))
-                            {
-                                cmd.ExecuteNonQuery();
-                            }
-                        }
+                        impinj.StopRead();
+                        zebra.StopRead();
+                        csl.StopRead();
                     }
                     else
                     {
-                        Console.WriteLine("Invalid Input!");
+                        Console.WriteLine("\nNo Reader Connected\n");
+                    }
+                    MainMenu();
+                }
+            }
+            else if (connectedTo == 5)
+            {
+                Console.WriteLine("Exiting application...");
+                using (MySqlDatabase db3 = new MySqlDatabase())
+                {
+                    string updQuery = "UPDATE reader_tbl SET Status = 'Disconnected' WHERE Status = 'Connected'";
+
+                    using (MySqlCommand cmd = new MySqlCommand(updQuery, db3.Con))
+                    {
+                        cmd.ExecuteNonQuery();
                     }
                 }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Invalid Input Format");
-                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input!");
             }
         }
         static bool Console_CloseHandler(int ctrlType)

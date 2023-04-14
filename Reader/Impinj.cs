@@ -280,8 +280,8 @@ namespace RfidReader.Reader
                                 }
                             }
 
-                            reader.KeepaliveReceived += OnKeepaliveReceived;
-                            reader.ConnectionLost += OnConnectionLost;
+                            //reader.KeepaliveReceived += OnKeepaliveReceived;
+                            //reader.ConnectionLost += OnConnectionLost;
                         }
                         else
                         {
@@ -306,8 +306,8 @@ namespace RfidReader.Reader
                             reader.SaveSettings();
                             settings.Save("settings.xml");
 
-                            reader.KeepaliveReceived += OnKeepaliveReceived;
-                            reader.ConnectionLost += OnConnectionLost;
+                            //reader.KeepaliveReceived += OnKeepaliveReceived;
+                            //reader.ConnectionLost += OnConnectionLost;
 
                             MySqlDatabase db6 = new();
 
@@ -1876,31 +1876,33 @@ namespace RfidReader.Reader
                 {
                     uniqueTags.Clear();
                     totalTags = 0;
-                    reader.Start();
-                    reader.TagsReported += OnTagsReported;
 
-                    //reader.KeepaliveReceived += OnKeepaliveReceived;
-                    //reader.ConnectionLost += OnConnectionLost;
+                    reader.Start();
+
+                    reader.TagsReported += OnTagsReported;
+                    reader.KeepaliveReceived += OnKeepaliveReceived;
+                    reader.ConnectionLost += OnConnectionLost;
                     //reader.TagsReported += async (sender, report) =>
                     //{
                     //    await Task.Run(() => OnTagsReported(sender, report));
                     //};
                 }
 
-                Console.ReadKey();
+                //Console.ReadKey();
 
-                foreach (ImpinjReader reader in Program.impinjReaders)
-                {
-                    reader.Stop();
-                    Console.WriteLine("\nImpinj Total Tags: " + uniqueTags.Count + "(" + totalTags + ")");
+                //foreach (ImpinjReader reader in Program.impinjReaders)
+                //{
+                //    reader.Stop();
+                //    reader.TagsReported -= OnTagsReported;
+                //    Console.WriteLine("\nImpinj Total Tags: " + uniqueTags.Count + "(" + totalTags + ")");
 
-                    MySqlDatabase db1 = new();
-                    string updQuery = "UPDATE read_tbl SET TimeOut = TIME_FORMAT(NOW(), '%h:%i:%s %p'), LogActive = 'No' WHERE LogActive = 'Yes'";
-                    cmd = new MySqlCommand(updQuery, db1.Con);
-                    cmd.Parameters.Clear();
-                    cmd.ExecuteNonQuery();
-                    //cmd.ExecuteNonQueryAsync();
-                }
+                //    MySqlDatabase db1 = new();
+                //    string updQuery = "UPDATE read_tbl SET TimeOut = TIME_FORMAT(NOW(), '%h:%i:%s %p'), LogActive = 'No' WHERE LogActive = 'Yes'";
+                //    cmd = new MySqlCommand(updQuery, db1.Con);
+                //    cmd.Parameters.Clear();
+                //    cmd.ExecuteNonQuery();
+                //    //cmd.ExecuteNonQueryAsync();
+                //}
             }
             catch (OctaneSdkException e)
             {
@@ -1909,6 +1911,25 @@ namespace RfidReader.Reader
             catch (Exception e)
             {
                 Console.WriteLine("Exception : {0}", e.Message);
+            }
+        }
+        public void StopRead()
+        {
+            foreach (ImpinjReader reader in Program.impinjReaders)
+            {
+                reader.Stop();
+
+                reader.TagsReported -= OnTagsReported;
+                reader.KeepaliveReceived -= OnKeepaliveReceived;
+                reader.ConnectionLost -= OnConnectionLost;
+                Console.WriteLine("\nImpinj Total Tags: " + uniqueTags.Count + "(" + totalTags + ")");
+
+                MySqlDatabase db1 = new();
+                string updQuery = "UPDATE read_tbl SET TimeOut = TIME_FORMAT(NOW(), '%h:%i:%s %p'), LogActive = 'No' WHERE LogActive = 'Yes'";
+                cmd = new MySqlCommand(updQuery, db1.Con);
+                cmd.Parameters.Clear();
+                cmd.ExecuteNonQuery();
+                //cmd.ExecuteNonQueryAsync();
             }
         }
         public void OnTagsReported(ImpinjReader sender, TagReport report)
@@ -1936,8 +1957,10 @@ namespace RfidReader.Reader
 
                 if (!isFound)
                 {
-                    Console.WriteLine("{0} ({1}) : {2} {3}",
-                                            sender.Name, sender.Address, tag.AntennaPortNumber, tag.Epc);
+                    //Console.WriteLine("{0} ({1}) : {2} {3}",
+                    //                        sender.Name, sender.Address, tag.AntennaPortNumber, tag.Epc);
+
+                    Console.WriteLine($"{epc} , {sender.Address}");
 
                     uniqueTags.Add(epc, dt.Rows);
 
@@ -2045,10 +2068,10 @@ namespace RfidReader.Reader
                 return false;
             }
         }
-        static void OnKeepaliveReceived(ImpinjReader reader)
+        private void OnKeepaliveReceived(ImpinjReader reader)
         {
         }
-        static void OnConnectionLost(ImpinjReader reader)
+        private void OnConnectionLost(ImpinjReader reader)
         {
             Console.WriteLine("Connection lost : {0} ({1})", reader.Name, reader.Address);
 
