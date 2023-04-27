@@ -1545,6 +1545,8 @@ namespace RfidReader.Reader
             {
                 switch (e.state)
                 {
+                    case CSLibrary.Constants.RFState.SHUTDOWN:
+                    case CSLibrary.Constants.RFState.ABORT:
                     case CSLibrary.Constants.RFState.DISCONNECTED:
                         Console.WriteLine("Connection Lost");
 
@@ -1573,6 +1575,14 @@ namespace RfidReader.Reader
             catch (ObjectDisposedException ex)
             {
                 Console.WriteLine(ex.Message);
+                foreach (HighLevelInterface reader in Program.cslReaders)
+                {
+                    if (ReaderIsAvailable(reader.IPAddress))
+                        Console.WriteLine("Reader Network! : pingable");
+                    else
+                        Console.WriteLine("Reader NOT on Network! : ping fail");
+                    ResetInventory(reader);
+                }
             }
             catch (Exception ex)
             {
@@ -1583,6 +1593,7 @@ namespace RfidReader.Reader
         {
             Console.WriteLine("Reconnecting ...");
             while (reader.Reconnect(10) != Result.OK) ;
+            Console.WriteLine("Reconnected");
             reader.StartOperation(Operation.TAG_RANGING, false);
         }
         private async void TagInventoryEvent(object sender, CSLibrary.Events.OnAsyncCallbackEventArgs e)

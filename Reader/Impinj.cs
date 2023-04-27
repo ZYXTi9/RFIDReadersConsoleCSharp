@@ -2071,14 +2071,18 @@ namespace RfidReader.Reader
         private void OnKeepaliveReceived(ImpinjReader reader)
         {
         }
+
         private void OnConnectionLost(ImpinjReader reader)
         {
-            Console.WriteLine("Connection lost : {0} ({1})", reader.Name, reader.Address);
+            Console.WriteLine("Connection lost");
 
-            if (ReaderIsAvailable(reader.Address) == true)
+            foreach (ImpinjReader readerx in Program.impinjReaders)
             {
-                reader.Connect(reader.Address);
-                reader.ResumeEventsAndReports();
+                if (ReaderIsAvailable(readerx.Address) == true)
+                {
+                    readerx.Connect(reader.Address);
+                    readerx.ResumeEventsAndReports();
+                }
             }
         }
         private void LoadDB(ImpinjReader reader)
